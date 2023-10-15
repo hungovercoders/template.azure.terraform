@@ -1,0 +1,18 @@
+tasks:
+  - name: Install Terraform
+    init: |
+      brew tap hashicorp/tap
+      brew install hashicorp/tap/terraform
+  - name: Install Azure CLI
+    init: |
+      brew update && brew install azure-cli
+  - command: |
+      az login --use-device-code
+  - name: Initialise Terraform
+  - command: |
+      cd  terraform
+      terraform init
+
+vscode:
+  extensions:
+    - hashicorp.terraform
