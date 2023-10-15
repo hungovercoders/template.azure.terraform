@@ -3,10 +3,10 @@ tasks:
     init: |
       brew update && brew install azure-cli
     command: |
-      gp sync-done waitonazurecli
       az login --use-device-code
       az account set --subscription "datagriff Teaching"
       az account show
+      gp sync-done waitonazurecli
   - name: Terraform
     init: |
       brew tap hashicorp/tap
