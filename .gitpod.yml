@@ -1,21 +1,23 @@
 tasks:
+  - name: Azure CLI
+    init: |
+      brew update && brew install azure-cli
+    command: |
+      gp sync-done waitonazurecli
+      az login --use-device-code
+      az account set --subscription "datagriff Teaching"
+      az account show
   - name: Terraform
     init: |
       brew tap hashicorp/tap
       brew install hashicorp/tap/terraform
     command: |
+      gp sync-await waitonazurecli
       cd  terraform
       terraform init
       terraform fmt
       terraform validate
       terraform plan
-  - name: Azure CLI
-    init: |
-      brew update && brew install azure-cli
-    command: |
-      az login --use-device-code
-      az account set --subscription "datagriff Teaching"
-      az account show
 
 vscode:
   extensions:
