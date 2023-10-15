@@ -8,6 +8,8 @@ tasks:
       brew update && brew install azure-cli
   - command: |
       az login --use-device-code
+      az account set --subscription "datagriff Teaching"
+      az account show
   - name: Initialise Terraform
   - command: |
       cd  terraform
