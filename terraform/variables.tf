@@ -51,9 +51,11 @@ variable "azure_namespace" {
 }
 
 locals {
-  region_shortcode      = (var.region == "northeurope" ? "eun" : var.region == "westeurope" ? "euw" : "unk")
-  environment_shortcode = (var.environment == "learning" ? "lrn" : var.environment == "development" ? "dev" : var.environment == "production" ? "prd" : "unk")
-  resource_group_name   = "${local.environment_shortcode}-${var.domain}-rg"
+  region_shortcode           = (var.region == "northeurope" ? "eun" : var.region == "westeurope" ? "euw" : "unk")
+  environment_shortcode      = (var.environment == "learning" ? "lrn" : var.environment == "development" ? "dev" : var.environment == "production" ? "prd" : "unk")
+  resource_group_name        = "${local.environment_shortcode}-${var.domain}-rg"
+  log_analytics_name         = "${local.environment_shortcode}-${var.organisation}-la-${local.region_shortcode}-${var.azure_namespace}"
+  container_environment_name = "${local.environment_shortcode}-${var.organisation}-cae-${local.region_shortcode}-${var.azure_namespace}"
   tags = {
     environment = var.environment
     team        = var.team
