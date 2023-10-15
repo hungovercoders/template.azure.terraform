@@ -2,8 +2,8 @@ tasks:
   - name: Azure CLI
     init: |
       brew update && brew install azure-cli
-      gp sync-done waitonazurecli
     command: |
+      gp sync-done waitonazurecli
       az login --use-device-code
       az account set --subscription "datagriff Teaching"
       az account show
