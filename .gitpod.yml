@@ -1,6 +1,6 @@
 tasks:
   - name: Terraform
-    init: |
+    before: |
       brew tap hashicorp/tap
       brew install hashicorp/tap/terraform
     command: |
@@ -11,7 +11,7 @@ tasks:
       terraform validate
       terraform plan
   - name: Azure CLI
-    init: |
+    before: |
       brew update && brew install azure-cli
     command: |
       az login --use-device-code
