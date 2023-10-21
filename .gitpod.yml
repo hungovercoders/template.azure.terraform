@@ -14,7 +14,7 @@ tasks:
     before: |
       brew update && brew install azure-cli
     command: |
-      az login --use-device-code
+      az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET --tenant $AZURE_TENANT_ID
       az account set --subscription "$AZURE_SUBSCRIPTION"
       az account show
       gp sync-done waitonazurecli
