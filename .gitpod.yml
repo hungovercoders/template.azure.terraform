@@ -15,7 +15,7 @@ tasks:
       brew update && brew install azure-cli
     command: |
       az login --use-device-code
-      az account set --subscription "datagriff Teaching"
+      az account set --subscription "$AZURE_SUBSCRIPTION"
       az account show
       gp sync-done waitonazurecli
 
