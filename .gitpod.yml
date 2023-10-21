@@ -1,18 +1,16 @@
+image:
+  file: .gitpod.Dockerfile
+
 tasks:
   - name: Terraform
-    before: |
-      brew tap hashicorp/tap
-      brew install hashicorp/tap/terraform
     command: |
-      gp sync-await waitonazurecli
       cd  terraform
       terraform init
       terraform fmt
+      gp sync-await waitonazurecli
       terraform validate
       terraform plan
   - name: Azure CLI
-    before: |
-      brew update && brew install azure-cli
     command: |
       az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET --tenant $AZURE_TENANT_ID
       az account set --subscription "$AZURE_SUBSCRIPTION"
