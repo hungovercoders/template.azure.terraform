@@ -7,11 +7,14 @@ RUN apt-get update
 # Install curl, git, and build-essential
 RUN apt-get install -y curl git build-essential
 
-# Install Homebrew
-RUN /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+# Clone Homebrew
+RUN git clone https://github.com/Homebrew/brew /home/linuxbrew/.linuxbrew/Homebrew
 
-# Add Homebrew to the PATH
+# Set up the PATH for Homebrew
 ENV PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:${PATH}"
+
+# Install Homebrew's dependencies
+RUN /home/linuxbrew/.linuxbrew/bin/brew doctor
 
 # Test to ensure it works
 RUN brew doctor
