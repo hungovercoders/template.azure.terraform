@@ -1,3 +1,7 @@
+output "AZURE_CLIENT_ID" {
+  value = env("AZURE_CLIENT_ID")
+}
+
 variable "region" {
   type        = string
   default     = "northeurope"
@@ -56,8 +60,9 @@ locals {
   resource_group_name   = "${local.environment_shortcode}-${var.domain}-rg"
 
   tags = {
-    environment = var.environment
-    team        = var.team
-    domain      = var.domain
+    environment  = var.environment
+    organisation = var.organisation
+    team         = var.team
+    domain       = var.domain
   }
 }
