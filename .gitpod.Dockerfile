@@ -4,17 +4,17 @@ FROM ubuntu:latest
 # Update the package list
 RUN apt-get update
 
-# Install curl, git, and build-essential
-RUN apt-get install -y curl git build-essential
+# Install curl and git
+RUN apt-get install -y curl git
 
-# Clone Homebrew
-RUN git clone https://github.com/Homebrew/brew /home/linuxbrew/.linuxbrew/Homebrew
+# Install Homebrew
+RUN /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-# Set up the PATH for Homebrew
+# Add Homebrew to the PATH
 ENV PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:${PATH}"
 
-# Install Homebrew's dependencies
-RUN /home/linuxbrew/.linuxbrew/bin/brew doctor
+# Install gcc using Homebrew
+RUN brew install gcc
 
 # Test to ensure it works
 RUN brew doctor
