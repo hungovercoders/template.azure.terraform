@@ -1,4 +1,4 @@
-FROM FROM gitpod/workspace-full:latest 
+FROM gitpod/workspace-full:latest 
 
 # Start with the Ubuntu base image
 # FROM ubuntu:latest
