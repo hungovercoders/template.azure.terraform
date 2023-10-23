@@ -1,29 +1,14 @@
-FROM gitpod/workspace-full:latest 
+FROM gitpod/workspace-base
 
-# Start with the Ubuntu base image
-# FROM ubuntu:latest
-
-# Update the package list
-# RUN apt-get update
-
-# Install curl and git
-# RUN apt-get install -y curl git
+USER gitpod
 
 # Install Homebrew
-# RUN /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+RUN /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" && \
+    echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> ~/.bashrc
 
-# Add Homebrew to the PATH
-# ENV PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:${PATH}"
-
-# Install gcc using Homebrew
-# RUN brew install gcc
-
-# Test to ensure it works
-# RUN brew doctor
-
-# Install Terraform
-RUN   brew tap hashicorp/tap
-RUN   brew install hashicorp/tap/terraform
-
-# Install Azure Cli
-RUN   brew update && brew install azure-cli
+# Update Homebrew, Install Terraform & Azure CLI
+RUN eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" && \
+    brew update && \
+    brew tap hashicorp/tap && \
+    brew install hashicorp/tap/terraform && \
+    brew install azure-cli
