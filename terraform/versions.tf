@@ -2,9 +2,9 @@ terraform {
 
 
   backend "azurerm" {
-    resource_group_name  = "state-rg"
-    storage_account_name = "stateeundgrf"
-    container_name       = "state"
+    resource_group_name  = TF_VAR_TERRAFORM_BACKEND_RESOURCE_GROUP_NAME
+    storage_account_name = TF_VAR_TERRAFORM_BACKEND_STORAGE_ACCOUNT_NAME
+    container_name       = TF_VAR_TERRAFORM_BACKEND_STORAGE_ACCOUNT_CONTAINER_NAME
     key                  = "terraform.tfstate"
   }
 

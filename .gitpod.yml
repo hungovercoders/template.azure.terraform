@@ -2,14 +2,20 @@ image:
   file: .cde.Dockerfile
 
 tasks:
-  - name: Terraform
-    command: |
-      gp sync-await waitonazurecli
-      sh ./cde/terraform.sh
   - name: Azure CLI
     command: |
       sh ./cde/azure.sh
       gp sync-done waitonazurecli
+  - name: Azure Storage
+    command: |
+      gp sync-await waitonazurecli
+      sh ./cde/storage.sh
+      gp sync-done waitonnstate
+  - name: Terraform
+    command: |
+      gp sync-await waitonnstate
+      sh ./cde/terraform.sh
+
 
 vscode:
   extensions:

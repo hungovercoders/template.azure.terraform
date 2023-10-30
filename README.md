@@ -1,19 +1,49 @@
-# platform.azure.container
+# TEMPLATE.AZURE.PLATFORM
 
-## Instructions
+This is a template repo for you to use to create your own Azure platform resources using Terraform. It is designed to work with both gitpod and github codespaces.
 
-1. Open in gitpod.
-2. On the Azure CLI: bash terminal, once prompted you will need to authenticate to Azure by going to the URL and entering in the code.
+## Use as Template
 
-![Azure Login Code](./images/azlogin.png)
+1. Create a new repository in github.
+2. Choose use template and select this repository.
 
-3. Azure CLI will then be authenticated and terraform will be able to initialise, format, validate and plan.
+## Pre-Requisites
 
-![Terraform Validate](./images/terraformvalidate.png)
+* You must have an Azure subscription.
+* You must have an application registration in Azure with the appropriate permissions to create resources in your subscription.
 
-## Upgrading Versions
+```bash
 
-If you get an issue where terraform says it doesn't support a particular resource, upgrade the [versiosn.tf file](./terraform/versions.tf) to the latest version of what you need and then run: 
+```
+
+## Develop with Gitpod
+
+1. Add the following environment variables to your gitpod environment:
+
+* ARM_CLIENT_ID
+* ARM_CLIENT_SECRET
+* ARM_SUBSCRIPTION_ID
+* ARM_SUBSCRIPTION_NAME
+* ARM_TENANT_ID
+* TERRAFORM_BACKEND_STORAGE_ACCOUNT_NAME
+* TERRAFORM_BACKEND_STORAGE_ACCOUNT_CONTAINER_NAME
+
+These can be scoped however you need. For example, you can scope them to the repository, or to your user.
+
+1. Open in gitpod and you should see the following bash terminals:
+
+1. **Azure CLI** - this will login to Azure using the service principal and set the subscription to the one specified in the environment variables.
+2. **Storage account** - which creates the storage account that will hold the terraform state.
+3. **Terraform** - which will run terraform init, format, validation and then terraform plan.
+
+## Develop with Github Codespaces
+
+## Deploy with Github Actions
+
+
+## Upgrading Terraform Versions
+
+If you get an issue where terraform says it doesn't support a particular resource, upgrade the [versions.tf file](./terraform/versions.tf) to the latest version of what you need and then run: 
 
 ```bash
 terraform init -upgrade
