@@ -5,7 +5,7 @@ terraform {
     resource_group_name  = "state-rg"
     storage_account_name = "lrnstateeunhngc"
     container_name       = "state"
-    key                  = "terraform.tfstate"
+    key                  = "template.azure.terraform.tfstate"
   }
 
   required_providers {
