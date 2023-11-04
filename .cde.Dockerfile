@@ -14,6 +14,6 @@ RUN eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" && \
     brew install azure-cli
 
 COPY cde/azure.sh /
-RUN chmod +x cde/azure.sh
-ENTRYPOINT [ "cde/azure.sh" ]
+RUN chmod +x azure.sh
+ENTRYPOINT [ "azure.sh" ]
 CMD [ "sleep", "infinity" ]
