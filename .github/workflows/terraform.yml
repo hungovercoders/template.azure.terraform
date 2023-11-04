@@ -20,9 +20,21 @@ jobs:
         with:
           terraform_version: 1.6.3
 
-      - name: Terraform Init
+      - name: 'Terraform Format'
         working-directory: terraform
-        run: terraform init
+        run: terraform fmt -check
+
+      - name: 'Terraform Init'
+        working-directory: terraform
+        run: terraform init -backend-config="storage_account_name=$TERRAFORM_BACKEND_STORAGE_ACCOUNT_NAME" -backend-config="container_name=$TERRAFORM_BACKEND_STORAGE_ACCOUNT_CONTAINER_NAME" -backend-config="key=template.azure.terraform.tfstate"
+
+      - name: 'Terraform Validate'
+        working-directory: terraform
+        run: terraform validate
+
+      - name: 'Terraform Plan'
+        working-directory: terraform    
+        run: terraform plan
 
       - name: Terraform Apply
         working-directory: terraform
