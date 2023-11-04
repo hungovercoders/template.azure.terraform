@@ -87,13 +87,17 @@ Ensure the scope of the variables is also at the required level when using user 
 
 a. **Azure CLI** - this will login to Azure using the service principal and set the subscription to the one specified in the environment variables.
 
+![Gitpod Azure CLI](images/gitpod_azure_cli.PNG)
 
 b. **Storage account** - which creates the storage account that will hold the terraform state.
 
+![Gitpod Azure Storage](images/gitpod_azure_storage.PNG)
 
 c. **Terraform** - which will run terraform init, format, validation and then terraform plan.
 
-You have now successfully initialised a repo
+![Gitpod Terraform](images/gitpod_terraform.PNG)
+
+You have now successfully initialised a repo with gitpod and integrated resource state with your developer environment.
 
 ## Develop with Github Codespaces
 
