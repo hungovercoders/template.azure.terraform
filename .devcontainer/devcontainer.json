@@ -16,7 +16,7 @@
 	// "forwardPorts": [],
 
 	// Uncomment the next line to run commands after the container is created.
-	"postStartCommand": "bash ../cde/azure.sh"
+	"postStartCommand": "echo $ARM_SUBSCRIPTION_NAME"
 
 	// Configure tool-specific properties.
 	// "customizations": {},
