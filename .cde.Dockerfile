@@ -12,3 +12,8 @@ RUN eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" && \
     brew tap hashicorp/tap && \
     brew install hashicorp/tap/terraform && \
     brew install azure-cli
+
+COPY cde/azure.sh /
+RUN chmod +x cde/azure.sh
+ENTRYPOINT [ "cde/azure.sh" ]
+CMD [ "sleep", "infinity" ]
