@@ -19,6 +19,7 @@ jobs:
       ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
       ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
       ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
+      TF_BACKEND_RESOURCE_GROUP: state-rg-${{ vars.UNIQUE_NAMESPACE }}
       TF_BACKEND_STORAGE_ACCOUNT: statesa${{ vars.UNIQUE_NAMESPACE }}
       TF_BACKEND_CONTAINER: ${{ vars.ENVIRONMENT }}
       ENVIRONMENT: ${{ vars.ENVIRONMENT }}
