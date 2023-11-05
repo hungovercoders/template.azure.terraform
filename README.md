@@ -67,7 +67,7 @@ echo $ARM_TENANT_ID
 | TF_BACKEND_STORAGE_ACCOUNT  |  lrnstatesaeunhngc |
 | TF_BACKEND_CONTAINER  | state  |
 | REGION  | northeurope  |
-
+| UNIQUE_NAMESPACE | hngc |
 These can be scoped however you need. For example, you can scope them to your [repository project](https://gitpod.io/projects), or to your [user](https://gitpod.io/user/variables).
 Ensure the scope of the variables is also at the required level when using user variables. In this example below I have set the variables at the user level, because I use them consistently, but scoped them to my hungovercoders organisation repos. The Tenant is the same everywhere though which is why it scoped to all.
 
