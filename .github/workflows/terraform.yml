@@ -66,19 +66,20 @@ jobs:
           set -a
           . ./.env
           set +a
-          echo $TEAM
+          export TF_VAR_team=$TEAM
+          export TF_VAR_domain=$DOMAIN
 
       - name: 'Terraform Plan'
         working-directory: terraform    
         run: terraform plan
-        env:
-          TF_VAR_team: $TEAM
-          TF_VAR_domain: $DOMAIN
+        # env:
+        #   TF_VAR_team: $TEAM
+        #   TF_VAR_domain: $DOMAIN
 
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main'
         working-directory: terraform
         run: terraform apply -auto-approve
-        env:
-          TF_VAR_team: $TEAM
-          TF_VAR_domain: $DOMAIN
+        # env:
+        #   TF_VAR_team: $TEAM
+        #   TF_VAR_domain: $DOMAIN
