@@ -64,8 +64,9 @@ jobs:
       - name: Load .env file
         run: |
           set -a
-          .env
+          . ./.env
           set +a
+          echo $TEAM
 
       - name: 'Terraform Plan'
         working-directory: terraform    
