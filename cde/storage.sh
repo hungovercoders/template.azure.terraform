@@ -1,5 +1,6 @@
 TF_BACKEND_RESOURCE_GROUP="state-rg-$UNIQUE_NAMESPACE"
 TF_BACKEND_STORAGE_ACCOUNT="statesa$UNIQUE_NAMESPACE"
+az resource group create -n $TF_BACKEND_RESOURCE_GROUP -l $REGION
 az storage account create -n $TF_BACKEND_STORAGE_ACCOUNT -g $TF_BACKEND_RESOURCE_GROUP -l $REGION --sku Standard_LRS
 az storage container create --name "development" --account-name $TF_BACKEND_STORAGE_ACCOUNT
 az storage container create --name "uat" --account-name $TF_BACKEND_STORAGE_ACCOUNT
