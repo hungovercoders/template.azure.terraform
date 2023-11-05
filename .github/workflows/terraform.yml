@@ -13,9 +13,7 @@ jobs:
   terraform:
     name: 'Terraform'
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        environment: [development, production] 
+    environment: development
     env:
       ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
       ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
@@ -60,8 +58,7 @@ jobs:
         working-directory: terraform    
         run: terraform plan
 
-   # Only apply on main branch and you can add conditions based on environment if necessary
       - name: Terraform Apply
-        if: (github.ref == 'refs/heads/main' && matrix.environment == 'prd') || matrix.environment == 'dev'
+        if: github.ref == 'refs/heads/main'
         working-directory: terraform
         run: terraform apply -auto-approve
