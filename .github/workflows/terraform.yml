@@ -63,11 +63,7 @@ jobs:
 
       - name: Load .env file
         run: |
-          set -a
-          . ./.env
-          set +a
-          export TF_VAR_team=$TEAM
-          export TF_VAR_domain=$DOMAIN
+          
       
       - name: Echo
         run: |
@@ -75,15 +71,22 @@ jobs:
 
       - name: 'Terraform Plan'
         working-directory: terraform    
-        run: terraform plan
-        env:
-          TF_VAR_team: "hungovercoders"
-          TF_VAR_domain: "platform"
+        run: 
+          set -a
+          . ./.env
+          set +a
+          export TF_VAR_team=$TEAM
+          export TF_VAR_domain=$DOMAIN
+          terraform plan
+    
 
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main'
         working-directory: terraform
-        run: terraform apply -auto-approve
-        # env:
-        #   TF_VAR_team: $TEAM
-        #   TF_VAR_domain: $DOMAIN
+        run: 
+          set -a
+          . ./.env
+          set +a
+          export TF_VAR_team=$TEAM
+          export TF_VAR_domain=$DOMAIN
+          terraform apply -auto-approve
