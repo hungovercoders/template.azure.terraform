@@ -26,7 +26,18 @@ echo "ARM_CLIENT_SECRET is..."
 echo $ARM_CLIENT_SECRET
 ```
 
-* You can also get the other Azure variables you need for the environment variables you need below by running:
+* If you are unsure where your app reg was created, you can find it [here](https://portal.azure.com/#view/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/~/RegisteredApps) in the Azure portal.
+
+* You can then give it the appropriate role against the subscription (as an example using the command below):
+
+**IMPORTANT:** I use "Owner" as a role in these examples as they are just development environments. You will likely want to limit access to your app registrations in reality to more appropriate roles.
+
+```bash
+az ad sp create --id $ARM_CLIENT_ID
+az role assignment create --assignee $ARM_CLIENT_ID --role "Owner" --scope "/subscriptions/$ARM_SUBSCRIPTION_ID"
+```
+
+* You can also get the other Azure variables you need for the environment variables you need in the following sections below by running:
 
 ```bash
 ARM_SUBSCRIPTION_ID=$(az account show --query id -o tsv)
@@ -39,17 +50,6 @@ ARM_TENANT_ID=$(az account show --query tenantId -o tsv)
 echo "ARM_TENANT_ID is..."
 echo $ARM_TENANT_ID
 ```
-
-* You can then give it the appropriate role against the subscription (as an example using the command below):
-
-**IMPORTANT:** I use "Owner" as a role in these examples as they are just development environments. You will likely want to limit access to your app registrations in reality to more appropriate roles.
-
-```bash
-az ad sp create --id $ARM_CLIENT_ID
-az role assignment create --assignee $ARM_CLIENT_ID --role "Owner" --scope "/subscriptions/$ARM_SUBSCRIPTION_ID"
-```
-
-If you are unsure where your app reg was created, you can find it [here](https://portal.azure.com/#view/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/~/RegisteredApps) in the Azure portal.
 
 ## Develop with Gitpod
 
