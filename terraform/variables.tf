@@ -1,6 +1,5 @@
 variable "region" {
   type        = string
-  default     = "northeurope"
   description = "The is the Azure region the resources will be deployed into."
   validation {
     condition     = contains(["northeurope", "westeurope"], var.region)
@@ -10,7 +9,6 @@ variable "region" {
 
 variable "environment" {
   type        = string
-  default     = "learning"
   description = "The is the environment the resources belong to. e.g. learning, development, production."
   validation {
     condition     = contains(["learning", "development", "production"], var.environment)
@@ -20,7 +18,6 @@ variable "environment" {
 
 variable "team" {
   type        = string
-  default     = "hungovercoders"
   description = "The is the team that own the resources."
   validation {
     condition     = contains(["datagriff", "hungovercoders", "dogadopt"], var.team)
@@ -30,7 +27,6 @@ variable "team" {
 
 variable "organisation" {
   type        = string
-  default     = "hungovercoders"
   description = "The is the organisation that owns the resources."
   validation {
     condition     = contains(["datagriff", "hungovercoders", "dogadopt"], var.organisation)
