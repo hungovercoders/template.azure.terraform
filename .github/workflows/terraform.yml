@@ -13,14 +13,14 @@ jobs:
   terraform:
     name: 'Terraform'
     runs-on: ubuntu-latest
-    environment: dev
+    environment: development
     env:
       ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
       ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
       ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
       ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
-      TF_BACKEND_STORAGE_ACCOUNT: ${{ secrets.TF_BACKEND_STORAGE_ACCOUNT }}
-      TF_BACKEND_CONTAINER: ${{ vars.TF_BACKEND_CONTAINER }}
+      TF_BACKEND_STORAGE_ACCOUNT: statesa${{ vars.UNIQUE_NAMESPACE }}
+      TF_BACKEND_CONTAINER: ${{ vars.ENVIRONMENT }}
       ENVIRONMENT: ${{ vars.ENVIRONMENT }}
       TF_VAR_environment: ${{ vars.ENVIRONMENT }}
       TF_VAR_unique_namespace: ${{ vars.UNIQUE_NAMESPACE }}
@@ -29,7 +29,6 @@ jobs:
       TF_VAR_team: ${{ vars.TEAM }}
       TF_VAR_domain: ${{ vars.DOMAIN }}
       
-
     steps:
       - name: Checkout
         uses: actions/checkout@v2
