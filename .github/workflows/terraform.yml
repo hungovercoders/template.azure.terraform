@@ -61,17 +61,9 @@ jobs:
         working-directory: terraform
         run: terraform validate
 
-      - name: Load .env file
-        run: |
-          
-      
-      - name: Echo
-        run: |
-          echo $TF_VAR_team
-
       - name: 'Terraform Plan'
         working-directory: terraform    
-        run: 
+        run: |
           set -a
           . ./.env
           set +a
@@ -83,7 +75,7 @@ jobs:
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main'
         working-directory: terraform
-        run: 
+        run: |
           set -a
           . ./.env
           set +a
