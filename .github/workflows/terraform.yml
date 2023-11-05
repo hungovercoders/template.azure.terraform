@@ -20,6 +20,9 @@ jobs:
         with:
           terraform_version: 1.6.3
 
+      - name: 'Test Echo'
+        run: echo $SUBSCRIPTION_ID
+
       - name: 'Terraform Format'
         working-directory: terraform
         run: terraform fmt -check
