@@ -26,7 +26,7 @@ jobs:
 
       - name: 'Terraform Init'
         working-directory: terraform
-        run: terraform init -backend-config="storage_account_name=$TERRAFORM_BACKEND_STORAGE_ACCOUNT_NAME" -backend-config="container_name=$TERRAFORM_BACKEND_STORAGE_ACCOUNT_CONTAINER_NAME" -backend-config="key=template.azure.terraform.tfstate"
+        run: terraform init -backend-config="storage_account_name=$TF_BACKEND_STORAGE_ACCOUNT" -backend-config="container_name=$TF_BACKEND_CONTAINER" -backend-config="key=template.azure.terraform.tfstate"
 
       - name: 'Terraform Validate'
         working-directory: terraform
