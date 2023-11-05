@@ -22,7 +22,7 @@ jobs:
       ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
       ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
       TF_BACKEND_STORAGE_ACCOUNT: ${{ secrets.TF_BACKEND_STORAGE_ACCOUNT }}
-      TF_BACKEND_CONTAINER: ${{ secrets.TF_BACKEND_CONTAINER }}
+      TF_BACKEND_CONTAINER: ${{ vars.TF_BACKEND_CONTAINER }}
       ENVIRONMENT: ${{ vars.ENVIRONMENT }}
       TF_VAR_environment: ${{ vars.ENVIRONMENT }}
       TF_VAR_unique_namespace: ${{ vars.UNIQUE_NAMESPACE }}
