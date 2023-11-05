@@ -64,7 +64,7 @@ jobs:
       - name: Load .env file
         run: |
           set -a
-          . ./.env
+          .env
           set +a
 
       - name: 'Terraform Plan'
