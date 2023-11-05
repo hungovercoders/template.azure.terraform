@@ -21,7 +21,14 @@ jobs:
       ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
       TF_BACKEND_STORAGE_ACCOUNT: ${{ secrets.TF_BACKEND_STORAGE_ACCOUNT }}
       TF_BACKEND_CONTAINER: ${{ secrets.TF_BACKEND_CONTAINER }}
-      ENVIRONMENT: ${{ vars.MY_VAR }}
+      ENVIRONMENT: ${{ vars.ENVIRONMENT }}
+      TF_VAR_environment: ${{ vars.ENVIRONMENT }}
+      TF_VAR_unique_namespace: ${{ vars.UNIQUE_NAMESPACE }}
+      TF_VAR_organisation: ${{ vars.ORGANISATION }}
+      TF_VAR_region: ${{ vars.REGION }}
+      TF_VAR_team: ${{ vars.TEAM }}
+      TF_VAR_domain: ${{ vars.DOMAIN }}
+      
 
     steps:
       - name: Checkout
@@ -32,7 +39,7 @@ jobs:
         with:
           terraform_version: 1.6.3
 
-      - name: 'Test Echo'
+      - name: 'State Environment'
         run: echo $ENVIRONMENT
 
       - name: 'Terraform Format'

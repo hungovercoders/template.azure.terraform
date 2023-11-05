@@ -44,7 +44,7 @@ variable "domain" {
   description = "The is the business problem domain being solved by the resources."
 }
 
-variable "azure_namespace" {
+variable "unique_namespace" {
   type        = string
   default     = "hngc"
   description = "The is the unique namespace added to resources."
