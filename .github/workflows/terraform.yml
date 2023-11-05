@@ -10,6 +10,7 @@ on:
   workflow_dispatch:
 
 jobs:
+  
   terraform:
     name: 'Terraform'
     runs-on: ubuntu-latest
@@ -59,6 +60,12 @@ jobs:
       - name: 'Terraform Validate'
         working-directory: terraform
         run: terraform validate
+
+      - name: Load .env file
+        run: |
+          set -a
+          . ./.env
+          set +a
 
       - name: 'Terraform Plan'
         working-directory: terraform    
