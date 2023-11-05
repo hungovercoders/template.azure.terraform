@@ -72,9 +72,9 @@ jobs:
       - name: 'Terraform Plan'
         working-directory: terraform    
         run: terraform plan
-        # env:
-        #   TF_VAR_team: $TEAM
-        #   TF_VAR_domain: $DOMAIN
+        env:
+          TF_VAR_team: "hungovercoders"
+          TF_VAR_domain: "platform"
 
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main'
