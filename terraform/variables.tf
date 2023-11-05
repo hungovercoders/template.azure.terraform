@@ -20,7 +20,7 @@ variable "team" {
   type        = string
   description = "The is the team that own the resources."
   validation {
-    condition     = contains(["datagriff", "hungovercoders", "dogadopt"], var.team)
+    condition     = contains(["datagriff", "hungovercoders", "dogadopt", "platform"], var.team)
     error_message = "The team is not valid, it should be datagriff, hungovercoders or dogadopt."
   }
 }
