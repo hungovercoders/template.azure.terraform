@@ -31,7 +31,7 @@ jobs:
           terraform_version: 1.6.3
 
       - name: 'Test Echo'
-        run: echo $ARM_SUBSCRIPTION_ID
+        run: echo $ENVIRONMENT
 
       - name: 'Terraform Format'
         working-directory: terraform
