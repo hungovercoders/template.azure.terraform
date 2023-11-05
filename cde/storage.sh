@@ -1,2 +1,2 @@
-az storage account create -n $TERRAFORM_BACKEND_STORAGE_ACCOUNT_NAME -g $TERRAFORM_BACKEND_RESOURCE_GROUP_NAME -l $REGION --sku Standard_LRS
-az storage container create --name $TERRAFORM_BACKEND_STORAGE_ACCOUNT_CONTAINER_NAME --account-name $TERRAFORM_BACKEND_STORAGE_ACCOUNT_NAME
+az storage account create -n $TF_BACKEND_STORAGE_ACCOUNT -g $TF_BACKEND_RESOURCE_GROUP -l $REGION --sku Standard_LRS
+az storage container create --name $TF_BACKEND_CONTAINER --account-name $TF_BACKEND_STORAGE_ACCOUNT
