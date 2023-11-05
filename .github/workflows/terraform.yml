@@ -68,6 +68,10 @@ jobs:
           set +a
           export TF_VAR_team=$TEAM
           export TF_VAR_domain=$DOMAIN
+      
+      - name: Echo
+        run: |
+          echo $TF_VAR_team
 
       - name: 'Terraform Plan'
         working-directory: terraform    
