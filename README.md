@@ -63,9 +63,10 @@ echo $ARM_TENANT_ID
 | ARM_SUBSCRIPTION_ID  | e10bae2a-7a57-11ee-b962-0242ac120002  |
 | ARM_SUBSCRIPTION_NAME  | Development  |
 | ARM_SUBSCRIPTION_ID  | e6288fd6-7a57-11ee-b962-0242ac120002  |
-| TERRAFORM_BACKEND_RESOURCE_GROUP_NAME  |  state-rg |
-| TERRAFORM_BACKEND_STORAGE_ACCOUNT_NAME  |  lrnstatesaeunhngc |
-| TERRAFORM_BACKEND_STORAGE_ACCOUNT_CONTAINER_NAME  | state  |
+| TF_BACKEND_RESOURCE_GROUP  |  state-rg |
+| TF_BACKEND_STORAGE_ACCOUNT  |  lrnstatesaeunhngc |
+| TF_BACKEND_CONTAINER  | state  |
+| REGION  | northeurope  |
 
 These can be scoped however you need. For example, you can scope them to your [repository project](https://gitpod.io/projects), or to your [user](https://gitpod.io/user/variables).
 Ensure the scope of the variables is also at the required level when using user variables. In this example below I have set the variables at the user level, because I use them consistently, but scoped them to my hungovercoders organisation repos. The Tenant is the same everywhere though which is why it scoped to all.
