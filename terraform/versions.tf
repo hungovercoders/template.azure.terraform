@@ -4,7 +4,7 @@ terraform {
   backend "azurerm" {
     resource_group_name  = "state-rg"
     storage_account_name = "lrnstateeunhngc"
-    container_name       = "state"
+    container_name       = "learning"
     key                  = "template.azure.terraform.tfstate"
   }
 
