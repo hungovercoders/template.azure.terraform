@@ -91,6 +91,14 @@ a. **Azure CLI** - this will login to Azure using the service principal and set 
 
 ![Gitpod Azure CLI](images/gitpod_azure_cli.PNG)
 
+**Important:** If you wish to sign in to Azure using your own credentials as part of this process, you can do so by editing the azure bash script here to the following and you will be prompted to enter a code when the workspace starts:
+
+```bash
+az login --use-device-code
+az account set --subscription "$ARM_SUBSCRIPTION_NAME"
+az account show
+```
+
 b. **Storage account** - which creates the storage account that will hold the terraform state.
 
 ![Gitpod Azure Storage](images/gitpod_azure_storage.PNG)
@@ -107,13 +115,15 @@ You have now successfully initialised a repo with gitpod and integrated resource
 
 ## Deploy with Github Actions
 
-## Migrating Terraform State
+## Miscellaneous
+
+### Migrating Terraform State
 
 ```bash
 terraform init -migrate-state
 ```
 
-## Upgrading Terraform Versions
+### Upgrading Terraform Versions
 
 If you get an issue where terraform says it doesn't support a particular resource, upgrade the [versions.tf file](./terraform/versions.tf) to the latest version of what you need and then run: 
 
