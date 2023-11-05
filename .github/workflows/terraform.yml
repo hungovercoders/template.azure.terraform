@@ -65,7 +65,7 @@ jobs:
         working-directory: terraform    
         run: |
           set -a
-          . ../.env
+          . ../domain.env
           set +a
           export TF_VAR_team=$TEAM
           export TF_VAR_domain=$DOMAIN
@@ -77,7 +77,7 @@ jobs:
         working-directory: terraform
         run: |
           set -a
-          . ../.env
+          . ../domain.env
           set +a
           export TF_VAR_team=$TEAM
           export TF_VAR_domain=$DOMAIN
