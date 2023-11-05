@@ -60,11 +60,6 @@ jobs:
         working-directory: terraform
         run: terraform validate
 
-      - name: Load .env file
-        uses: falti/dotenv-action@v2
-        with:
-          path: .env
-
       - name: 'Terraform Plan'
         working-directory: terraform    
         run: terraform plan
