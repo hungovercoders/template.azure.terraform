@@ -15,6 +15,7 @@ tasks:
     command: |
       gp sync-await waitonnstate
       sh ./cde/terraform.sh
+      cd terraform
 
 
 vscode:
