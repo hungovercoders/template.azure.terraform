@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  terraform-dev:
+  terraform-development:
     uses: ./.github/workflows/job.yml
     with:
       UNIQUE_NAMESPACE: ${{ vars.UNIQUE_NAMESPACE }}
@@ -23,9 +23,9 @@ jobs:
       ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
       ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
 
-  terraform-prod:
+  terraform-production:
     uses: ./.github/workflows/job.yml
-    needs: terraform-dev
+    needs: terraform-development
     with:
       UNIQUE_NAMESPACE: ${{ vars.UNIQUE_NAMESPACE }}
       ORGANISATION: ${{ vars.ORGANISATION }}
