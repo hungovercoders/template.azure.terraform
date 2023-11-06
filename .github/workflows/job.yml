@@ -62,8 +62,6 @@ jobs:
             echo "Storage Account is $TF_BACKEND_STORAGE_ACCOUNT" 
             echo "Environment is $ENVIRONMENT" 
             echo "Container is $TF_BACKEND_CONTAINER"
-            echo "Team is $TF_VAR_team" 
-            echo "Domain is $TF_VAR_domain"
     
         - name: 'Terraform Format'
           working-directory: terraform
@@ -85,6 +83,8 @@ jobs:
             set +a
             export TF_VAR_team=$TEAM
             export TF_VAR_domain=$DOMAIN
+            echo "Team is $TF_VAR_team" 
+            echo "Domain is $TF_VAR_domain"
             terraform plan
         
         - name: Terraform Apply
@@ -96,4 +96,6 @@ jobs:
             set +a
             export TF_VAR_team=$TEAM
             export TF_VAR_domain=$DOMAIN
+            echo "Team is $TF_VAR_team" 
+            echo "Domain is $TF_VAR_domain"
             terraform apply -auto-approve
