@@ -4,7 +4,7 @@ image:
 tasks:
   - name: Azure CLI
     command: |
-      sh ./cde/azure.sh
+      sh ./cde/azure_sp.sh
       gp sync-done waitonazurecli
   - name: Azure Storage
     command: |

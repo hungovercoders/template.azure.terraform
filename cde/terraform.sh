@@ -7,7 +7,7 @@ TF_BACKEND_CONTAINER=$ENVIRONMENT
 export TF_VAR_environment=$ENVIRONMENT
 export TF_VAR_unique_namespace=$UNIQUE_NAMESPACE
 export TF_VAR_organisation=$ORGANISATION
-export TF_VAR_region=$REGION
+export TF_VAR_region=$ARM_REGION
 export TF_VAR_team=$TEAM
 export TF_VAR_domain=$DOMAIN
 

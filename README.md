@@ -1,6 +1,18 @@
 # TEMPLATE.AZURE.PLATFORM
 
-This is a template repo for you to use to create your own Azure platform resources using Terraform. It is designed to work with both gitpod and github codespaces.
+This is a template repo for you to use to create your own Azure platform resources using Terraform. It is designed to work with both gitpod and github codespaces as well as deploy with github actions.
+
+- [TEMPLATE.AZURE.PLATFORM](#templateazureplatform)
+  - [Use as Template](#use-as-template)
+  - [Create Azure Resources](#create-azure-resources)
+  - [Develop with Gitpod](#develop-with-gitpod)
+  - [Develop with Github Codespaces](#develop-with-github-codespaces)
+  - [Develop with VS Code Dev Containers](#develop-with-vs-code-dev-containers)
+  - [Deploy with Github Actions](#deploy-with-github-actions)
+  - [Miscellaneous](#miscellaneous)
+    - [Migrating Terraform State](#migrating-terraform-state)
+    - [Upgrading Terraform Versions](#upgrading-terraform-versions)
+
 
 ## Use as Template
 
@@ -8,7 +20,7 @@ This is a template repo for you to use to create your own Azure platform resourc
 2. Choose use template and select this repository.
 3. Name your new repo appropriately.
 
-## Pre-Requisites
+## Create Azure Resources
 
 * You must have an [Azure subscription](https://portal.azure.com).
 * You must have an application registration in Azure with the appropriate permissions to create resources in your subscription.
@@ -52,9 +64,10 @@ echo $ARM_TENANT_ID
 ```
 
 ## Develop with Gitpod
+ 
+To develop with [gitpod](https://gitpod.io) you can either open the url of this repo prefixed with gitpod.io/# or you can use the [gitpod browser extension](https://www.gitpod.io/docs/configure/user-settings/browser-extension) to open the repo in gitpod. 
 
 1. If you haven't already, add the following environment variables to your gitpod environment:
-
 
 | Name  | Example Value  |
 |---|---|
@@ -63,10 +76,9 @@ echo $ARM_TENANT_ID
 | ARM_SUBSCRIPTION_ID  | e10bae2a-7a57-11ee-b962-0242ac120002  |
 | ARM_SUBSCRIPTION_NAME  | Development  |
 | ARM_SUBSCRIPTION_ID  | e6288fd6-7a57-11ee-b962-0242ac120002  |
-| TF_BACKEND_RESOURCE_GROUP  |  state-rg |
-| TF_BACKEND_STORAGE_ACCOUNT  |  lrnstatesaeunhngc |
-| TF_BACKEND_CONTAINER  | state  |
-| REGION  | northeurope  |
+| ARM_REGION  | northeurope  |
+| ENVIRONMENT | development |
+| ORGANISATION | hungovercoders |
 | UNIQUE_NAMESPACE | hngc |
 
 These can be scoped however you need. For example, you can scope them to your [repository project](https://gitpod.io/projects), or to your [user](https://gitpod.io/user/variables).
@@ -74,15 +86,11 @@ Ensure the scope of the variables is also at the required level when using user 
 
 ![Gitpod Variables](images/gitpod_variables.PNG)
 
-2. You'll need to edit the terraform storage account name to match yours in the variables.tf file. You'll also want to change the key of the terraform path to be something unique, I have used the name of the repo. If you choose different resource group names you'll also need to change these. I recommend making these minor changes using [github.dev](https://github.dev) as a quick way to edit your repo.
+2. You'll need to edit the [domain.env](domain.env) file to be appropriate domain and team for your new repo. 
 
-```hcl
-  backend "azurerm" {
-    resource_group_name  = "state-rg"
-    storage_account_name = "lrnstateeunhngc" <-- change this to be the name of your storage account.
-    container_name       = "state"
-    key                  = "template.azure.terraform.tfstate" <-- change this to be the name of your repository plus ".tfstate".
-  }
+```bash
+TEAM=myteam
+DOMAIN=mydomain
 ```
 
 3. Open in gitpod and you should see the following bash terminals:
@@ -91,13 +99,7 @@ a. **Azure CLI** - this will login to Azure using the service principal and set 
 
 ![Gitpod Azure CLI](images/gitpod_azure_cli.PNG)
 
-**Important:** If you wish to sign in to Azure using your own credentials as part of this process, you can do so by editing the azure bash script here to the following and you will be prompted to enter a code when the workspace starts:
-
-```bash
-az login --use-device-code
-az account set --subscription "$ARM_SUBSCRIPTION_NAME"
-az account show
-```
+**Important:** If you wish to sign in to Azure using your own credentials as part of this process, you will want to change to use to the azure.sh script in the gitpod.yml instead of azure_sp.sh. This will prompt you to sign-in when you open up gitpod and the other tasks will not run until you have done this.
 
 b. **Storage account** - which creates the storage account that will hold the terraform state.
 

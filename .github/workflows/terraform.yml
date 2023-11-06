@@ -27,7 +27,7 @@ jobs:
       TF_VAR_environment: ${{ vars.ENVIRONMENT }}
       TF_VAR_unique_namespace: ${{ vars.UNIQUE_NAMESPACE }}
       TF_VAR_organisation: ${{ vars.ORGANISATION }}
-      TF_VAR_region: ${{ vars.REGION }}
+      TF_VAR_region: ${{ vars.ARM_REGION }}
       
     steps:
       - name: Checkout
@@ -71,7 +71,6 @@ jobs:
           export TF_VAR_domain=$DOMAIN
           terraform plan
     
-
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main'
         working-directory: terraform
