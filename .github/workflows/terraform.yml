@@ -41,7 +41,7 @@ jobs:
   terraform-production:
     if: github.ref == 'refs/heads/main'
     uses: ./.github/workflows/job.yml
-    needs: terraform-production-plan
+    needs: terraform-development
     with:
       UNIQUE_NAMESPACE: ${{ vars.UNIQUE_NAMESPACE }}
       ORGANISATION: ${{ vars.ORGANISATION }}
