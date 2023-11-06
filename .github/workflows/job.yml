@@ -38,9 +38,9 @@ jobs:
             ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
             TF_BACKEND_RESOURCE_GROUP: state-rg-${{ vars.UNIQUE_NAMESPACE }}
             TF_BACKEND_STORAGE_ACCOUNT: statesa${{ vars.UNIQUE_NAMESPACE }}
-            TF_BACKEND_CONTAINER: ${{ vars.ENVIRONMENT }}
-            ENVIRONMENT: ${{ vars.ENVIRONMENT }}
-            TF_VAR_environment: ${{ vars.ENVIRONMENT }}
+            TF_BACKEND_CONTAINER: ${{ inputs.ENVIRONMENT }}
+            ENVIRONMENT: ${{ inputs.ENVIRONMENT }}
+            TF_VAR_environment: ${{ inputs.ENVIRONMENT }}
             TF_VAR_unique_namespace: ${{ vars.UNIQUE_NAMESPACE }}
             TF_VAR_organisation: ${{ vars.ORGANISATION }}
             TF_VAR_region: ${{ vars.ARM_REGION }}
