@@ -10,74 +10,15 @@ on:
   workflow_dispatch:
 
 jobs:
-  
-  terraform:
-    name: 'Terraform'
-    runs-on: ubuntu-latest
-    environment: development
-    env:
+  terraform-dev:
+    uses: ./.github/workflows/job.yml
+    with:
+      UNIQUE_NAMESPACE: ${{ vars.UNIQUE_NAMESPACE }}
+      ORGANISATION: ${{ vars.ORGANISATION }}
+      ARM_REGION: ${{ vars.ARM_REGION }}
+      ENVIRONMENT: ${{ vars.ENVIRONMENT }}
+    secrets:
       ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
       ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
       ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
       ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
-      TF_BACKEND_RESOURCE_GROUP: state-rg-${{ vars.UNIQUE_NAMESPACE }}
-      TF_BACKEND_STORAGE_ACCOUNT: statesa${{ vars.UNIQUE_NAMESPACE }}
-      TF_BACKEND_CONTAINER: ${{ vars.ENVIRONMENT }}
-      ENVIRONMENT: ${{ vars.ENVIRONMENT }}
-      TF_VAR_environment: ${{ vars.ENVIRONMENT }}
-      TF_VAR_unique_namespace: ${{ vars.UNIQUE_NAMESPACE }}
-      TF_VAR_organisation: ${{ vars.ORGANISATION }}
-      TF_VAR_region: ${{ vars.ARM_REGION }}
-      
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v1
-        with:
-          terraform_version: 1.6.3
-
-      - name: 'Show Variables'
-        run: |
-          echo "Unique Namespace is $TF_VAR_unique_namespace" 
-          echo "Organisation is $TF_VAR_organisation" 
-          echo "Region is $TF_VAR_region" 
-          echo "Storage Account is $TF_BACKEND_STORAGE_ACCOUNT" 
-          echo "Environment is $ENVIRONMENT" 
-          echo "Container is $TF_BACKEND_CONTAINER"
-          echo "Team is $TF_VAR_team" 
-          echo "Domain is $TF_VAR_domain"
-
-      - name: 'Terraform Format'
-        working-directory: terraform
-        run: terraform fmt -check
-
-      - name: 'Terraform Init'
-        working-directory: terraform
-        run: terraform init -backend-config="resource_group_name=$TF_BACKEND_RESOURCE_GROUP" -backend-config="storage_account_name=$TF_BACKEND_STORAGE_ACCOUNT" -backend-config="container_name=$TF_BACKEND_CONTAINER" -backend-config="key=template.azure.terraform.tfstate"
-      
-      - name: 'Terraform Validate'
-        working-directory: terraform
-        run: terraform validate
-
-      - name: 'Terraform Plan'
-        working-directory: terraform    
-        run: |
-          set -a
-          . ../domain.env
-          set +a
-          export TF_VAR_team=$TEAM
-          export TF_VAR_domain=$DOMAIN
-          terraform plan
-    
-      - name: Terraform Apply
-        if: github.ref == 'refs/heads/main'
-        working-directory: terraform
-        run: |
-          set -a
-          . ../domain.env
-          set +a
-          export TF_VAR_team=$TEAM
-          export TF_VAR_domain=$DOMAIN
-          terraform apply -auto-approve
