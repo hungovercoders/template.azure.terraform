@@ -23,9 +23,24 @@ jobs:
       ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
       ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
 
-  terraform-production:
+  terraform-production-plan:
     uses: ./.github/workflows/job.yml
     needs: terraform-development
+    with:
+      UNIQUE_NAMESPACE: ${{ vars.UNIQUE_NAMESPACE }}
+      ORGANISATION: ${{ vars.ORGANISATION }}
+      ARM_REGION: ${{ vars.ARM_REGION }}
+      ENVIRONMENT: "production-plan"
+    secrets:
+      ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
+      ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
+      ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+      ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
+
+  terraform-production:
+    if: github.ref == 'refs/heads/main'
+    uses: ./.github/workflows/job.yml
+    needs: terraform-production-plan
     with:
       UNIQUE_NAMESPACE: ${{ vars.UNIQUE_NAMESPACE }}
       ORGANISATION: ${{ vars.ORGANISATION }}
