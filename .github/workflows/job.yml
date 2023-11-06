@@ -55,7 +55,10 @@ jobs:
             terraform_version: 1.6.3
 
         - name: Adjust ENVIRONMENT variable for Production Plan
-          run: echo "TF_BACKEND_CONTAINER=$(echo '${{ inputs.ENVIRONMENT }}' | sed 's/-plan//')" >> $GITHUB_ENV
+          run: |
+            echo "TF_BACKEND_CONTAINER=$(echo '${{ inputs.ENVIRONMENT }}' | sed 's/-plan//')" >> $GITHUB_ENV
+            echo "TF_VAR_environment=$(echo '${{ inputs.ENVIRONMENT }}' | sed 's/-plan//')" >> $GITHUB_ENV
+            echo "ENVIRONMENT=$(echo '${{ inputs.ENVIRONMENT }}' | sed 's/-plan//')" >> $GITHUB_ENV
     
         - name: 'Show Variables'
           run: |
