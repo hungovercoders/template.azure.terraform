@@ -16,7 +16,7 @@ jobs:
       UNIQUE_NAMESPACE: ${{ vars.UNIQUE_NAMESPACE }}
       ORGANISATION: ${{ vars.ORGANISATION }}
       ARM_REGION: ${{ vars.ARM_REGION }}
-      ENVIRONMENT: ${{ vars.ENVIRONMENT }}
+      ENVIRONMENT: "development"
     secrets:
       ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
       ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
