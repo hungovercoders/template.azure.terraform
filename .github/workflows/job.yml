@@ -53,6 +53,9 @@ jobs:
           uses: hashicorp/setup-terraform@v1
           with:
             terraform_version: 1.6.3
+
+        - name: Adjust ENVIRONMENT variable for Production Plan
+          run: echo "TF_BACKEND_CONTAINER=$(echo '${{ inputs.ENVIRONMENT }}' | sed 's/-plan//')" >> $GITHUB_ENV
     
         - name: 'Show Variables'
           run: |

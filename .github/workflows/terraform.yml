@@ -24,6 +24,7 @@ jobs:
       ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
 
   terraform-production-plan:
+    if: github.ref != 'refs/heads/main'
     uses: ./.github/workflows/job.yml
     needs: terraform-development
     with:
