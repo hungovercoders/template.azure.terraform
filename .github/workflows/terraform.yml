@@ -22,3 +22,17 @@ jobs:
       ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
       ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
       ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
+
+  terraform-prod:
+    uses: ./.github/workflows/job.yml
+    needs: terraform-dev
+    with:
+      UNIQUE_NAMESPACE: ${{ vars.UNIQUE_NAMESPACE }}
+      ORGANISATION: ${{ vars.ORGANISATION }}
+      ARM_REGION: ${{ vars.ARM_REGION }}
+      ENVIRONMENT: "production"
+    secrets:
+      ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
+      ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
+      ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+      ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
