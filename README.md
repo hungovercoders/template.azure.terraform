@@ -13,7 +13,6 @@ This is a template repo for you to use to create your own Azure platform resourc
     - [Migrating Terraform State](#migrating-terraform-state)
     - [Upgrading Terraform Versions](#upgrading-terraform-versions)
 
-
 ## Use as Template
 
 1. Create a new repository in github.
@@ -22,9 +21,9 @@ This is a template repo for you to use to create your own Azure platform resourc
 
 ## Create Azure Resources
 
-* You must have an [Azure subscription](https://portal.azure.com).
-* You must have an application registration in Azure with the appropriate permissions to create resources in your subscription.
-* You can create an application registration by running the a CLI command in a shell in the portal. Copy and paste the following code, but change your subscription name to be the one your using and set the app reg name to be what you require. It will also output the ARM_CLIENT_ID and ARM_CLIENT_SECRET which you can use to set the environment variables in the following sections.
+- You must have an [Azure subscription](https://portal.azure.com).
+- You must have an application registration in Azure with the appropriate permissions to create resources in your subscription.
+- You can create an application registration by running the a CLI command in a shell in the portal. Copy and paste the following code, but change your subscription name to be the one your using and set the app reg name to be what you require. It will also output the ARM_CLIENT_ID and ARM_CLIENT_SECRET which you can use to set the environment variables in the following sections.
 
 ```bash
 SUBSCRIPTION_NAME="MySubscriptionName"
@@ -38,9 +37,9 @@ echo "ARM_CLIENT_SECRET is..."
 echo $ARM_CLIENT_SECRET
 ```
 
-* If you are unsure where your app reg was created, you can find it [here](https://portal.azure.com/#view/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/~/RegisteredApps) in the Azure portal.
+- If you are unsure where your app reg was created, you can find it [here](https://portal.azure.com/#view/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/~/RegisteredApps) in the Azure portal.
 
-* You can then give it the appropriate role against the subscription (as an example using the command below):
+- You can then give it the appropriate role against the subscription (as an example using the command below):
 
 **IMPORTANT:** I use "Owner" as a role in these examples as they are just development environments. You will likely want to limit access to your app registrations in reality to more appropriate roles.
 
@@ -64,7 +63,7 @@ echo $ARM_TENANT_ID
 ```
 
 ## Develop with Gitpod
- 
+
 To develop with [gitpod](https://gitpod.io) you can either open the url of this repo prefixed with gitpod.io/# or you can use the [gitpod browser extension](https://www.gitpod.io/docs/configure/user-settings/browser-extension) to open the repo in gitpod. 
 
 1. If you haven't already, add the following environment variables to your gitpod environment:
@@ -101,6 +100,8 @@ a. **Azure CLI** - this will login to Azure using the service principal and set 
 
 **Important:** If you wish to sign in to Azure using your own credentials as part of this process, you will want to change to use to the azure.sh script in the gitpod.yml instead of azure_sp.sh. This will prompt you to sign-in when you open up gitpod and the other tasks will not run until you have done this.
 
+![Gitpod Azure CLI](images/gitpod_azure_cli_own.PNG)
+
 b. **Storage account** - which creates the storage account that will hold the terraform state.
 
 ![Gitpod Azure Storage](images/gitpod_azure_storage.PNG)
@@ -132,4 +133,3 @@ If you get an issue where terraform says it doesn't support a particular resourc
 ```bash
 terraform init -upgrade
 ```
-
