@@ -33,7 +33,7 @@ This is a template repo for you to use to create your own Azure platform resourc
 ## Naming Conventions Used
 
 | Resource Type  | Convention  | Example Value  |
-|---|---|
+|---|---|---|
 | State Resource Group | state-rg-{uniquenamespace} | state-rg-hngc |
 | Resource Group | {env}-{domain}-rg-{uniquenamespace} | dev-platform-rg-hngc  |
 | Resource with Hyphens | {env}-{domain}-{resourceshortcode}-{regionshortcode}-{uniquenamespace} | dev-beer-vnet-eun-hngc  |
