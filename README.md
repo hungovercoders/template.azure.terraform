@@ -220,13 +220,19 @@ In order to use environments in github actions you will need your repository to 
 
 2. Set the environment value to be "development".
 
+![Github Dev Environment](images/github_dev_environment.PNG)
+
 3. Go to your repo and click on settings and then environments. Click on new environment and create an environment called production-plan. This is to allow plans to occur against production when not in the main branch (as we protect this branch in the following task).
+  
+![Github Production Plan Environment](images/github_prod_plan_environment.PNG)
 
 4. Go to your repo and click on settings and then environments. Click on new environment and create an environment called production.
 
 5. Set the environment value to be "production".
 
 6. Protect this environment by adding 1 protection rule for the production branch. This will mean that only protected branches (main configured earlier) can deploy to production.
+
+![Github Production Environment](images/github_prod_environment.PNG)
 
 ### Amend Workflow File
 
@@ -249,8 +255,13 @@ This means that the workflow will run on push to main, pull request to main and 
 
 ![Github Actions](images/github_actions.PNG)
 
-- A pull request will deploy to your developer environment and generate a production plan only as part of the workflow.
-- A commit to main will deploy to your developer environment and deploy to production as part of the workflow.
+3. On raising  a pull request will deploy to your developer environment and generate a production plan only as part of the workflow.
+
+![Azure Dev](images/azure_dev_infra.PNG)
+
+4. A commit to main will deploy to your developer environment and deploy to production as part of the workflow.
+
+![Azure Prod](images/azure_prod_infra.PNG)
 
 ## Miscellaneous
 
