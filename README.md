@@ -6,7 +6,9 @@ This is a template repo for you to use to create your own Azure platform resourc
   - [What this template provides](#what-this-template-provides)
   - [Use as Template](#use-as-template)
   - [Create Azure Resources](#create-azure-resources)
+  - [Update Common Variables](#update-common-variables)
   - [Develop with Gitpod](#develop-with-gitpod)
+    - [Setup a Prebuild](#setup-a-prebuild)
   - [Develop with Github Codespaces](#develop-with-github-codespaces)
   - [Develop with VS Code Dev Containers](#develop-with-vs-code-dev-containers)
   - [Deploy with Github Actions](#deploy-with-github-actions)
@@ -17,8 +19,9 @@ This is a template repo for you to use to create your own Azure platform resourc
 ## What this template provides
 
 - Instructions on how to setup Azure credentials that is used to deploy infrastructure.
+- Instructions on how to update common variables used in any environment.
 - Instructions on how develop in different environments using gitpod, github codespaces and VS Code dev containers.
-- An environment that includes the Azure CLI, Terraform and appropriate variables.
+- A developer environment that includes the Azure CLI, Terraform and appropriate variables.
 - An automatically deployed storage account to hold the terraform state.
 - A github actions workflow to deploy the infrastructure.
 
@@ -73,11 +76,30 @@ echo "ARM_TENANT_ID is..."
 echo $ARM_TENANT_ID
 ```
 
-## Develop with Gitpod
+## Update Common Variables
 
-To develop with [gitpod](https://gitpod.io) you can either open the url of this repo prefixed with gitpod.io/# or you can use the [gitpod browser extension](https://www.gitpod.io/docs/configure/user-settings/browser-extension) to open the repo in gitpod.
+1. You'll need to edit the [domain.env](domain.env) file to be appropriate domain and team for your new repo.
 
-1. If you haven't already, add the following environment variables to your gitpod environment:
+```bash
+TEAM=myteam
+DOMAIN=mydomain
+```
+
+**Top Tip!** You can edit github repos in the browser by changing the name of the repo url to be github.dev instead of github.com. e.g. https://github.dev/hungovercoders/terraform.azure.platform. This will open up the repo in VS Code in the browser and you can edit the files directly.
+
+2. You'll need to edit the [versions.tf](terraform/versions.tf) file to have the correct key for your state. e.g.
+
+```yml
+backend "azurerm" {
+    key = "platform.azure.myinfrastructure.tfstate"
+  }
+```
+
+This value wil be what we see later is the file name in the appropriate container of the storage account that holds the state.
+
+## Develop with [Gitpod](gitpod.io)
+
+1. If you haven't already, add the following environment variables to your [gitpod environment](https://gitpod.io/user/variables):
 
 | Name  | Example Value  |
 |---|---|
@@ -96,14 +118,9 @@ Ensure the scope of the variables is also at the required level when using user 
 
 ![Gitpod Variables](images/gitpod_variables.PNG)
 
-2. You'll need to edit the [domain.env](domain.env) file to be appropriate domain and team for your new repo. 
+2. To develop with [gitpod](https://gitpod.io) you can either open the url of this repo prefixed with gitpod.io/# or you can use the [gitpod browser extension](https://www.gitpod.io/docs/configure/user-settings/browser-extension) to open the repo in gitpod.
 
-```bash
-TEAM=myteam
-DOMAIN=mydomain
-```
-
-3. Open in gitpod and you should see the following bash terminals:
+4. Open in gitpod and you should see the following bash terminals:
 
 a. **Azure CLI** - this will login to Azure using the service principal and set the subscription to the one specified in the environment variables.
 
@@ -123,7 +140,7 @@ You should see this deployed in Azure based on the environment variables you set
 
 This will have a container for each environment.
 
-![Azure Storage Containers](images/gitpod_azure_storage_containers.PNG)
+![Azure Storage Containers](images/azure_storage_containers.PNG)
 
 c. **Terraform** - which will run terraform init, format, validation and then terraform plan.
 
@@ -135,13 +152,30 @@ You should see the initial state file in the development container with the same
 
 You have now successfully initialised a repo with gitpod and integrated resource state with your developer environment. To develop you can now start adding resources to the [main.tf](./terraform/main.tf) file and then run terraform plan and apply as you would normally.
 
+### Setup a Prebuild
+
+In order to speed up your new environment when you go to use it again I recommend setting up a [gitpod prebuild](https://www.gitpod.io/docs/configure/projects/prebuilds). This will mean the development container is already built and ready to go when you open it up.
+
 ## Develop with Github Codespaces
 
 ## Develop with VS Code Dev Containers
 
 ## Deploy with Github Actions
 
+In order to make the actions trigger appropriately on pull request or committing to main, you will need to amend the [terraform.yml](.github/workflows/terraform.yml) file to have the appropriate default branches instead of the placeholders e.g.
 
+```yaml
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+```
+
+This means that the workflow will run on push to main, pull request to main and manually when you click the run workflow button.
 
 ## Miscellaneous
 
