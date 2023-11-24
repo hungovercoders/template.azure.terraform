@@ -17,9 +17,9 @@ This is a template repo for you to use to create your own Azure platform resourc
     - [Setup protected branch](#setup-protected-branch)
     - [Setup Environments](#setup-environments)
     - [Amend Workflow File](#amend-workflow-file)
-  - [Miscellaneous](#miscellaneous)
-    - [Migrating Terraform State](#migrating-terraform-state)
-    - [Upgrading Terraform Versions](#upgrading-terraform-versions)
+  - [FAQs](#faqs)
+    - [What if I need to migrate terraform state?](#what-if-i-need-to-migrate-terraform-state)
+    - [What if I need to upgrade terraform versions?](#what-if-i-need-to-upgrade-terraform-versions)
 
 ## What this template provides
 
@@ -124,7 +124,7 @@ This value wil be what we see later is the file name in the appropriate containe
 | ARM_CLIENT_ID  | da4ee6ba-7a57-11ee-b962-0242ac120002  |
 | ARM_CLIENT_SECRET  |  ed72eb4c-7a57-11ee-b962-0242ac120002 |
 | ARM_SUBSCRIPTION_ID  | e10bae2a-7a57-11ee-b962-0242ac120002  |
-| ARM_SUBSCRIPTION_NAME  | Development  |
+| ARM_SUBSCRIPTION_NAME  | MySubscription  |
 | ARM_SUBSCRIPTION_ID  | e6288fd6-7a57-11ee-b962-0242ac120002  |
 | ARM_REGION  | northeurope  |
 | ENVIRONMENT | development |
@@ -174,6 +174,18 @@ You have now successfully initialised a repo with gitpod and integrated resource
 
 In order to speed up your new environment when you go to use it again I recommend setting up a [gitpod prebuild](https://www.gitpod.io/docs/configure/projects/prebuilds). This will mean the development container is already built and ready to go when you open it up.
 
+1. Create a project in gitpod and link it to your repo.
+
+2. Configure prebuilds in the project.
+
+![Gitpod Prebuild](images/gitpod_prebuild.PNG)
+
+3. Run a prebuild now just to get it started.
+
+![Gitpod Prebuild Run](images/gitpod_prebuild_run.PNG)
+
+4. Open the project next time and you will have a much quicker statup as the container is already built.
+
 ## Develop with Github Codespaces
 
 ## Develop with VS Code Dev Containers
@@ -191,7 +203,7 @@ In the following you can choose to scope your secrets and variables at the repos
 | ARM_CLIENT_ID  | da4ee6ba-7a57-11ee-b962-0242ac120002  |
 | ARM_CLIENT_SECRET  |  ed72eb4c-7a57-11ee-b962-0242ac120002 |
 | ARM_SUBSCRIPTION_ID  | e10bae2a-7a57-11ee-b962-0242ac120002  |
-| ARM_SUBSCRIPTION_NAME  | Development  |
+| ARM_SUBSCRIPTION_NAME  | MySubscription  |
 | ARM_SUBSCRIPTION_ID  | e6288fd6-7a57-11ee-b962-0242ac120002  |
 
 ![Github Actions Secrets](images/github_actions_secrets.PNG)
@@ -263,15 +275,17 @@ This means that the workflow will run on push to main, pull request to main and 
 
 ![Azure Prod](images/azure_prod_infra.PNG)
 
-## Miscellaneous
+## FAQs
 
-### Migrating Terraform State
+### What if I need to migrate terraform state?
+
+If you get an issue where terraform says you need to migrate the state, you can run:
 
 ```bash
 terraform init -migrate-state
 ```
 
-### Upgrading Terraform Versions
+### What if I need to upgrade terraform versions?
 
 If you get an issue where terraform says it doesn't support a particular resource, upgrade the [versions.tf file](./terraform/versions.tf) to the latest version of what you need and then run: 
 
