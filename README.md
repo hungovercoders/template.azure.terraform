@@ -12,6 +12,10 @@ This is a template repo for you to use to create your own Azure platform resourc
   - [Develop with Github Codespaces](#develop-with-github-codespaces)
   - [Develop with VS Code Dev Containers](#develop-with-vs-code-dev-containers)
   - [Deploy with Github Actions](#deploy-with-github-actions)
+    - [Setup Secrets and Variables](#setup-secrets-and-variables)
+  - [Setup protected branch](#setup-protected-branch)
+    - [Setup Environment](#setup-environment)
+    - [Amend Workflow File](#amend-workflow-file)
   - [Miscellaneous](#miscellaneous)
     - [Migrating Terraform State](#migrating-terraform-state)
     - [Upgrading Terraform Versions](#upgrading-terraform-versions)
@@ -19,7 +23,7 @@ This is a template repo for you to use to create your own Azure platform resourc
 ## What this template provides
 
 - Instructions on how to setup Azure credentials that is used to deploy infrastructure.
-- Instructions on how to update common variables used in any environment.
+- Instructions on how to update common variables used in any developer environment.
 - Instructions on how develop in different environments using gitpod, github codespaces and VS Code dev containers.
 - A developer environment that includes the Azure CLI, Terraform and appropriate variables.
 - An automatically deployed storage account to hold the terraform state.
@@ -134,7 +138,7 @@ b. **Storage account** - which creates the storage account that will hold the te
 
 ![Gitpod Azure Storage](images/gitpod_azure_storage.PNG)
 
-You should see this deployed in Azure based on the environment variables you set earlier. 
+You should see this deployed in Azure based on the environment variables you set earlier.
 
 ![Azure Storage](images/azure_storage.PNG)
 
@@ -162,7 +166,55 @@ In order to speed up your new environment when you go to use it again I recommen
 
 ## Deploy with Github Actions
 
-In order to make the actions trigger appropriately on pull request or committing to main, you will need to amend the [terraform.yml](.github/workflows/terraform.yml) file to have the appropriate default branches instead of the placeholders e.g.
+### Setup Secrets and Variables
+
+In the following you can choose to scope your secrets and variables at the repository or organisation level depending on your security needs. You could also leverage environment level secrets and variables if you wished as per the section after this.
+
+1. If you haven't already, add the following environment secrets to your github actions secrets. You can do this by going to your repo, clicking on settings and then secrets. Go to actions and you can then add the following secrets:
+
+| Name  | Example Value  |
+|---|---|
+| ARM_CLIENT_ID  | da4ee6ba-7a57-11ee-b962-0242ac120002  |
+| ARM_CLIENT_SECRET  |  ed72eb4c-7a57-11ee-b962-0242ac120002 |
+| ARM_SUBSCRIPTION_ID  | e10bae2a-7a57-11ee-b962-0242ac120002  |
+| ARM_SUBSCRIPTION_NAME  | Development  |
+| ARM_SUBSCRIPTION_ID  | e6288fd6-7a57-11ee-b962-0242ac120002  |
+
+![Github Actions Secrets](images/github_actions_secrets.PNG)
+
+2. If you haven't already, add the following environment variables to your github actions variables. You can do this by going to your repo, clicking on settings and then secrets. Go to actions and you can then add the following variables:
+
+| Name  | Example Value  |
+|---|---|
+| ARM_REGION  | northeurope  |
+| ORGANISATION | hungovercoders |
+| UNIQUE_NAMESPACE | hngc |
+
+![Github Actions Variables](images/github_actions_variables.PNG)
+
+## Setup protected branch
+
+In order to protect your main branch from being deployed to without a pull request, you can setup a protected branch. You can do this by going to your repo, clicking on settings and then branches. You can then add a branch protection rule for main.
+
+### Setup Environment
+
+In order to use environments in github actions you will need your repository to be public if you are using a free github account. If you are using a paid account you can use private repositories.
+
+1. Go to your repo and click on settings and then environments. Click on new environment and create an environment called development.
+
+2. Set the environment value to be "development".
+
+3. Go to your repo and click on settings and then environments. Click on new environment and create an environment called production-plan. This is to allow plans to occur against production when not in the main branch (as we protect this branch in the following task).
+
+4. Go to your repo and click on settings and then environments. Click on new environment and create an environment called production.
+
+5. Set the environment value to be "production".
+
+6. Protect this environment by adding 1 protection rule for the production branch. This will mean that only protected branches (main configured earlier) can deploy to production.
+
+### Amend Workflow File
+
+1. In order to make the actions trigger appropriately on pull request or committing to main, you will need to amend the [terraform.yml](.github/workflows/terraform.yml) file to have the appropriate default branches instead of the placeholders e.g.
 
 ```yaml
 on:
@@ -176,6 +228,13 @@ on:
 ```
 
 This means that the workflow will run on push to main, pull request to main and manually when you click the run workflow button.
+
+2. You can now commit your changes to main and the workflow will run. You can see the workflow running in the actions tab of your repo.
+
+![Github Actions](images/github_actions.PNG)
+
+- A pull request will deploy to your developer environment and generate a production plan only as part of the workflow.
+- A commit to main will deploy to your developer environment and deploy to production as part of the workflow.
 
 ## Miscellaneous
 
