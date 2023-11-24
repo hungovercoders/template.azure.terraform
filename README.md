@@ -188,7 +188,53 @@ In order to speed up your new environment when you go to use it again I recommen
 
 ## Develop with Github Codespaces
 
+1. If you haven't already, add the following environment secrets to your github codespaces.
+
+| Name  | Example Value  |
+|---|---|
+| ARM_CLIENT_ID  | da4ee6ba-7a57-11ee-b962-0242ac120002  |
+| ARM_CLIENT_SECRET  |  ed72eb4c-7a57-11ee-b962-0242ac120002 |
+| ARM_SUBSCRIPTION_ID  | e10bae2a-7a57-11ee-b962-0242ac120002  |
+| ARM_SUBSCRIPTION_NAME  | MySubscription  |
+| ARM_SUBSCRIPTION_ID  | e6288fd6-7a57-11ee-b962-0242ac120002  |
+| ARM_REGION  | northeurope  |
+| ENVIRONMENT | development |
+| ORGANISATION | hungovercoders |
+| UNIQUE_NAMESPACE | hngc |
+
+![Codespaces Secrets](images/codespace_secrets.PNG)
+
+1. To develop with codespaces, click code on your repo and then click create codespace on main.
+
+![Codespace Create](images/codespace_create.PNG)
+
+**Note:** I have been unable to automatically run the following scripts on startup so far, even though tried adding to the [devcontainer.json](.devcontainer/devcontainer.json) file. If you know how to do this, please let me know or contribute!
+
+2. To enable the Azure CLI with the service account you created, execute the following in the terminal:
+
+```bash
+sh ./cde/azure_sp.sh
+```
+
+**Important:** If you wish to sign in to Azure using your own credentials as part of this process, you will want to change to use to the azure.sh script in the gitpod.yml instead of azure_sp.sh. This will prompt you to sign-in when you open up gitpod and the other tasks will not run until you have done this.
+
+3. To create the storage account to hold state, run the following in the terminal:
+
+```bash
+sh ./cde/storage.sh
+```
+
+4. To initialise terraform, run the following in the terminal:
+
+```bash
+sh ./cde/terraform.sh
+```
+
+You have now successfully initialised a repo with codespaces and integrated resource state with your developer environment. To develop you can now start adding resources to the [main.tf](./terraform/main.tf) file and then run terraform plan and apply as you would normally.
+
 ## Develop with VS Code Dev Containers
+
+TBC
 
 ## Deploy with Github Actions
 
