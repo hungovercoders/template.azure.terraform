@@ -4,6 +4,7 @@ This is a template repo for you to use to create your own Azure platform resourc
 
 - [TEMPLATE.AZURE.PLATFORM](#templateazureplatform)
   - [What this template provides](#what-this-template-provides)
+  - [Naming Conventions Used](#naming-conventions-used)
   - [Use as Template](#use-as-template)
   - [Create Azure Resources](#create-azure-resources)
   - [Update Common Variables](#update-common-variables)
@@ -28,6 +29,19 @@ This is a template repo for you to use to create your own Azure platform resourc
 - A developer environment that includes the Azure CLI, Terraform and appropriate variables.
 - An automatically deployed storage account to hold the terraform state.
 - A github actions workflow to deploy the infrastructure.
+
+## Naming Conventions Used
+
+| Resource Type  | Convention  | Example Value  |
+|---|---|
+| State Resource Group | state-rg-{uniquenamespace} | state-rg-hngc |
+| Resource Group | {env}-{domain}-rg-{uniquenamespace} | dev-platform-rg-hngc  |
+| Resource with Hyphens | {env}-{domain}-{resourceshortcode}-{regionshortcode}-{uniquenamespace} | dev-beer-vnet-eun-hngc  |
+| Resource without Hyphens | {env}{domain}{resourceshortcode}{regionshortcode}{uniquenamespace} | devbeersaeunhngc  |
+
+If you want to amend the naming conventions used for the resources you deploy, you can do this in the [main.tf](./terraform/variables.tf) file.
+
+I have chosen to use one storage account for state and separate the environments by containers. Each state file is then present as per the key in the [versions.tf](./terraform/versions.tf) file. This is a personal preference and you can choose to use a storage account per environment if you wish, but you will need to amend the code as necessary.
 
 ## Use as Template
 
@@ -195,6 +209,8 @@ In the following you can choose to scope your secrets and variables at the repos
 ## Setup protected branch
 
 In order to protect your main branch from being deployed to without a pull request, you can setup a protected branch. You can do this by going to your repo, clicking on settings and then branches. You can then add a branch protection rule for main.
+
+![Github Protected Branch](images/github_protected_branch.PNG)
 
 ### Setup Environment
 
