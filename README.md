@@ -14,8 +14,8 @@ This is a template repo for you to use to create your own Azure platform resourc
   - [Develop with VS Code Dev Containers](#develop-with-vs-code-dev-containers)
   - [Deploy with Github Actions](#deploy-with-github-actions)
     - [Setup Secrets and Variables](#setup-secrets-and-variables)
-  - [Setup protected branch](#setup-protected-branch)
-    - [Setup Environment](#setup-environment)
+    - [Setup protected branch](#setup-protected-branch)
+    - [Setup Environments](#setup-environments)
     - [Amend Workflow File](#amend-workflow-file)
   - [Miscellaneous](#miscellaneous)
     - [Migrating Terraform State](#migrating-terraform-state)
@@ -206,13 +206,13 @@ In the following you can choose to scope your secrets and variables at the repos
 
 ![Github Actions Variables](images/github_actions_variables.PNG)
 
-## Setup protected branch
+### Setup protected branch
 
 In order to protect your main branch from being deployed to without a pull request, you can setup a protected branch. You can do this by going to your repo, clicking on settings and then branches. You can then add a branch protection rule for main.
 
 ![Github Protected Branch](images/github_protected_branch.PNG)
 
-### Setup Environment
+### Setup Environments
 
 In order to use environments in github actions you will need your repository to be public if you are using a free github account. If you are using a paid account you can use private repositories.
 
