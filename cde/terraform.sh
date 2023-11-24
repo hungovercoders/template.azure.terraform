@@ -12,7 +12,7 @@ export TF_VAR_team=$TEAM
 export TF_VAR_domain=$DOMAIN
 
 cd  terraform
-terraform init -backend-config="resource_group_name=$TF_BACKEND_RESOURCE_GROUP" -backend-config="storage_account_name=$TF_BACKEND_STORAGE_ACCOUNT" -backend-config="container_name=$TF_BACKEND_CONTAINER" -backend-config="key=template.azure.terraform.tfstate"
+terraform init -backend-config="resource_group_name=$TF_BACKEND_RESOURCE_GROUP" -backend-config="storage_account_name=$TF_BACKEND_STORAGE_ACCOUNT" -backend-config="container_name=$TF_BACKEND_CONTAINER"
 terraform fmt
 terraform validate
 terraform plan
