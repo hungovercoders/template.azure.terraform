@@ -3,6 +3,7 @@
 This is a template repo for you to use to create your own Azure platform resources using Terraform. It is designed to work with both gitpod and github codespaces as well as deploy with github actions.
 
 - [TEMPLATE.AZURE.PLATFORM](#templateazureplatform)
+  - [What this template provides](#what-this-template-provides)
   - [Use as Template](#use-as-template)
   - [Create Azure Resources](#create-azure-resources)
   - [Develop with Gitpod](#develop-with-gitpod)
@@ -13,11 +14,21 @@ This is a template repo for you to use to create your own Azure platform resourc
     - [Migrating Terraform State](#migrating-terraform-state)
     - [Upgrading Terraform Versions](#upgrading-terraform-versions)
 
+## What this template provides
+
+- Instructions on how to setup Azure credentials that is used to deploy infrastructure.
+- Instructions on how develop in different environments using gitpod, github codespaces and VS Code dev containers.
+- An environment that includes the Azure CLI, Terraform and appropriate variables.
+- An automatically deployed storage account to hold the terraform state.
+- A github actions workflow to deploy the infrastructure.
+
 ## Use as Template
 
 1. Create a new repository in github.
 2. Choose use template and select this repository.
 3. Name your new repo appropriately.
+
+![Github Repo Template](images/github_repo_template.PNG)
 
 ## Create Azure Resources
 
@@ -64,7 +75,7 @@ echo $ARM_TENANT_ID
 
 ## Develop with Gitpod
 
-To develop with [gitpod](https://gitpod.io) you can either open the url of this repo prefixed with gitpod.io/# or you can use the [gitpod browser extension](https://www.gitpod.io/docs/configure/user-settings/browser-extension) to open the repo in gitpod. 
+To develop with [gitpod](https://gitpod.io) you can either open the url of this repo prefixed with gitpod.io/# or you can use the [gitpod browser extension](https://www.gitpod.io/docs/configure/user-settings/browser-extension) to open the repo in gitpod.
 
 1. If you haven't already, add the following environment variables to your gitpod environment:
 
@@ -106,17 +117,31 @@ b. **Storage account** - which creates the storage account that will hold the te
 
 ![Gitpod Azure Storage](images/gitpod_azure_storage.PNG)
 
+You should see this deployed in Azure based on the environment variables you set earlier. 
+
+![Azure Storage](images/azure_storage.PNG)
+
+This will have a container for each environment.
+
+![Azure Storage Containers](images/gitpod_azure_storage_containers.PNG)
+
 c. **Terraform** - which will run terraform init, format, validation and then terraform plan.
 
 ![Gitpod Terraform](images/gitpod_terraform.PNG)
 
-You have now successfully initialised a repo with gitpod and integrated resource state with your developer environment.
+You should see the initial state file in the development container with the same name as the repo.
+
+![Azure Storage State](images/azure_storage_container_state.PNG)
+
+You have now successfully initialised a repo with gitpod and integrated resource state with your developer environment. To develop you can now start adding resources to the [main.tf](./terraform/main.tf) file and then run terraform plan and apply as you would normally.
 
 ## Develop with Github Codespaces
 
 ## Develop with VS Code Dev Containers
 
 ## Deploy with Github Actions
+
+
 
 ## Miscellaneous
 
