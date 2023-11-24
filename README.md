@@ -216,6 +216,8 @@ In order to speed up your new environment when you go to use it again I recommen
 sh ./cde/azure_sp.sh
 ```
 
+![Codespaces CLI](images/codespace_cli.PNG)
+
 **Important:** If you wish to sign in to Azure using your own credentials as part of this process, you will want to change to use to the azure.sh script in the gitpod.yml instead of azure_sp.sh. This will prompt you to sign-in when you open up gitpod and the other tasks will not run until you have done this.
 
 3. To create the storage account to hold state, run the following in the terminal:
@@ -224,11 +226,15 @@ sh ./cde/azure_sp.sh
 sh ./cde/storage.sh
 ```
 
+![Codespaces Storage](images/codespace_storage.PNG)
+
 4. To initialise terraform, run the following in the terminal:
 
 ```bash
 sh ./cde/terraform.sh
 ```
+
+![Codespaces Terraform](images/codespace_terraform.PNG)
 
 You have now successfully initialised a repo with codespaces and integrated resource state with your developer environment. To develop you can now start adding resources to the [main.tf](./terraform/main.tf) file and then run terraform plan and apply as you would normally.
 
