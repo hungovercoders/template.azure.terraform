@@ -1,3 +1,5 @@
+apply=${1:-False}
+echo "Apply: $apply"
 set -a
 . ./domain.env
 set +a
@@ -16,3 +18,7 @@ terraform init -backend-config="resource_group_name=$TF_BACKEND_RESOURCE_GROUP" 
 terraform fmt
 terraform validate
 terraform plan
+if [ $apply = True ]; then
+    echo "Applying..."
+    terraform apply -auto-approve
+fi
