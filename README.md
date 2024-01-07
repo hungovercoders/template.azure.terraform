@@ -345,7 +345,7 @@ cd tfexport
 Then run the following command from that directory with the rg parameter taking in the resource group you want to import. The below imports a resource group called "dev-containerapp-rg-hngc" from the subscription we have authenticated against in the previous setup steps.
 
 ```bash
-aztftexport rg dev-containerapp-rg-hngc
+aztfexport rg dev-containerapp-rg-hngc
 ```
 
 You should see "initializing" in the terminal. 
