@@ -2,6 +2,9 @@ image:
   file: .cde.Dockerfile
 
 tasks:
+  - name: Versions
+    command: |
+      sh ./cde/versions.sh
   - name: Azure CLI
     command: |
       sh ./cde/azure_sp.sh
