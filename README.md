@@ -406,7 +406,7 @@ You can see the versions of tools installed either as part of the bash that runs
 sh ./cde/versions.sh
 ```
 
-![Tool Versions](images/tool_versions.png)
+![Tool Versions](images/tool_versions.PNG)
 
 ### What if I need to migrate terraform state?
 
