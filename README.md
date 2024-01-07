@@ -348,7 +348,33 @@ Then run the following command from that directory with the rg parameter taking 
 aztftexport rg dev-containerapp-rg-hngc
 ```
 
-Then you should see the appropriate terraform files in the directory that you can use as a quickstart.
+You should see "initializing" in the terminal. 
+
+![Aztfexport Initializing](images/aztfexport_initialising.PNG)
+
+Often there are a load of "skips" you might see as it does not import everything. There are a number of options present though and so I choose "w" which is the import all option.
+
+![Aztfexport Options](images/aztfexport_options.png)
+
+You'll then see "importing" if it has kicked off correctly.
+
+![Aztfexport Importing](images/aztfexport_importing.png)
+
+After a period you should see the appropriate terraform files in the directory that you can use as a starting point.
+
+![Aztfexport Imported](images/aztfexport_imported.png)
+
+You can then run a terraform plan to validate the infrastructure is as you expect with "no changes" in the output.
+
+```bash
+terraform plan
+```
+
+![Aztfexport Plan](images/aztfexport_plan.png)
+
+From here you can move the files into the template "terraform" location and leverage everything that has already been setup in this repo, running terraform plan and apply as you would normally while you develop.
+
+I recommend reading further the [microsoft documentation](https://learn.microsoft.com/en-us/azure/developer/terraform/azure-export-for-terraform/export-terraform-overview) and the github [repo](https://github.com/Azure/aztfexport) for the tool to understand how to use it further and for any updates.
 
 ## FAQs
 
