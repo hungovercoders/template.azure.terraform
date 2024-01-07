@@ -18,6 +18,8 @@ This is a template repo for you to use to create your own Azure platform resourc
     - [Setup Environments](#setup-environments)
     - [Amend Workflow File](#amend-workflow-file)
   - [FAQs](#faqs)
+    - [How do I test from my dev environment before committing to the pipeline?](#how-do-i-test-from-my-dev-environment-before-committing-to-the-pipeline)
+  - [What versions of tools do I have installed?](#what-versions-of-tools-do-i-have-installed)
     - [What if I need to migrate terraform state?](#what-if-i-need-to-migrate-terraform-state)
     - [What if I need to upgrade terraform versions?](#what-if-i-need-to-upgrade-terraform-versions)
 
@@ -328,6 +330,34 @@ This means that the workflow will run on push to main, pull request to main and 
 ![Azure Prod](images/azure_prod_infra.PNG)
 
 ## FAQs
+
+### How do I test from my dev environment before committing to the pipeline?
+
+The best way to test loin your dev environment is to use the same commands that the github action pipeline uses that are stored in the cde/* files.
+
+To perform a terraform plan run:
+
+```bash
+sh ./cde/terraform.sh
+```
+
+To perform a terraform apply run:
+
+```bash
+sh ./cde/terraform.sh True
+```
+
+The True denotes a parameter to perform apply as well as all the plans.
+
+Utilising these files not only keeps the pipelines dumb but also ensures you are testing in your dev environment in the same way as the pipeline will run.
+
+## What versions of tools do I have installed?
+
+You can see the versions of tools installed either as part of the bash that runs on startup that you will see as a "Versions" terminal or you can run the file it references in a new terminal:
+
+```bash
+sh ./cde/versions.sh
+```
 
 ### What if I need to migrate terraform state?
 
