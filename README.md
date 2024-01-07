@@ -17,6 +17,7 @@ This is a template repo for you to use to create your own Azure platform resourc
     - [Setup protected branch](#setup-protected-branch)
     - [Setup Environments](#setup-environments)
     - [Amend Workflow File](#amend-workflow-file)
+  - [Importing Existing Azure Resources into Terraform](#importing-existing-azure-resources-into-terraform)
   - [FAQs](#faqs)
     - [How do I test from my dev environment before committing to the pipeline?](#how-do-i-test-from-my-dev-environment-before-committing-to-the-pipeline)
   - [What versions of tools do I have installed?](#what-versions-of-tools-do-i-have-installed)
@@ -328,6 +329,26 @@ This means that the workflow will run on push to main, pull request to main and 
 4. A commit to main will deploy to your developer environment and deploy to production as part of the workflow.
 
 ![Azure Prod](images/azure_prod_infra.PNG)
+
+## Importing Existing Azure Resources into Terraform
+
+If you have existing resources in Azure that you want to import into terraform, you can use the tool [aztfexport](https://github.com/Azure/aztfexport) which also comes configured with this developer environment.
+
+It is very simple to use and to import an existing resource group you can use the permissions already established in the environment in the previous steps.
+First ensure you have an empty directory and navigate to that directory by running the following in a terminal:
+
+```bash
+mkdir tfexport
+cd tfexport
+```
+
+Then run the following command from that directory with the rg parameter taking in the resource group you want to import. The below imports a resource group called "dev-containerapp-rg-hngc" from the subscription we have authenticated against in the previous setup steps.
+
+```bash
+aztftexport rg dev-containerapp-rg-hngc
+```
+
+Then you should see the appropriate terraform files in the directory that you can use as a quickstart.
 
 ## FAQs
 
