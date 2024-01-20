@@ -97,7 +97,7 @@ echo "ARM_TENANT_ID is..."
 echo $ARM_TENANT_ID
 ```
 
-## Update Common Variables
+## Update Common Variables and Remove Terraform State Files
 
 1. You'll need to edit the [domain.env](domain.env) file to be appropriate domain and team for your new repo.
 
@@ -115,6 +115,8 @@ backend "azurerm" {
     key = "platform.azure.myinfrastructure.tfstate"
   }
 ```
+
+3. Delete the terraform/.terraform directory and the .terraform.lock.hcl file. This will allow you to start with new state for the backend key you have established above.
 
 This value wil be what we see later is the file name in the appropriate container of the storage account that holds the state.
 
