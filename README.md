@@ -116,9 +116,9 @@ backend "azurerm" {
   }
 ```
 
-3. Delete the terraform/.terraform directory and the .terraform.lock.hcl file. This will allow you to start with new state for the backend key you have established above.
-
 This value wil be what we see later is the file name in the appropriate container of the storage account that holds the state.
+
+3. Delete the terraform/.terraform directory and the .terraform.lock.hcl file. This will allow you to start with new state for the backend key you have established above.
 
 ## Develop with [Gitpod](gitpod.io)
 
