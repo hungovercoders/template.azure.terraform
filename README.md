@@ -378,6 +378,18 @@ From here you can move the files into the template "terraform" location and leve
 
 I recommend reading further the [microsoft documentation](https://learn.microsoft.com/en-us/azure/developer/terraform/azure-export-for-terraform/export-terraform-overview) and the github [repo](https://github.com/Azure/aztfexport) for the tool to understand how to use it further and for any updates.
 
+## Remove Images and Insert Template README File
+
+Once you are happy that everything is working as expected you will want to replace the README content with more pertinent details to your codebase.
+
+1. Remove the images directory.
+
+2. Replace the README information with that in [README-TEMPLATE.md](README-TEMPLATE.md)
+
+3. Amend the README title and details as neccessary.
+
+4. Remove the README-TEMPLATE.md file.
+
 ## FAQs
 
 ### How do I test from my dev environment before committing to the pipeline?
