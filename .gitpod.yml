@@ -5,7 +5,7 @@ tasks:
   - name: Versions
     command: |
       sh ./tools/environment/versions.sh
-  - name: Versions
+  - name: Variables
     command: |
       sh ./tools/environment/variables.sh
   - name: Azure CLI
