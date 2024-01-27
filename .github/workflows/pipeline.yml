@@ -7,7 +7,7 @@ on:
     paths-ignore:
       - 'README.md'
       - 'README-TEMPLATE.md'
-      - 'gitpod.yml'
+      - '.gitpod.yml'
       - '.cde.Dockerfile'
       - 'images/**'
   pull_request:
