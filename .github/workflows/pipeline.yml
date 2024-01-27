@@ -6,11 +6,19 @@ on:
       - main
     paths-ignore:
       - 'README.md'
+      - 'README-TEMPLATE.md'
+      - 'gitpod.yml'
+      - '.cde.Dockerfile'
+      - 'images/**'
   pull_request:
     branches:
       - main
     paths-ignore:
       - 'README.md'
+      - 'README-TEMPLATE.md'
+      - 'gitpod.yml'
+      - '.cde.Dockerfile'
+      - 'images/**'
   workflow_dispatch:
 
 jobs:
