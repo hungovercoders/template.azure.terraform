@@ -1,3 +1,5 @@
+echo 'Getting git version...'
+git --version
 echo 'Getting terraform version...'
 terraform --version
 echo 'Getting az cli version...'

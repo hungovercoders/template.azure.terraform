@@ -1,4 +1,4 @@
-name: Terraform Job
+name: Infrastructure
 
 on:
   workflow_call:
@@ -28,7 +28,7 @@ on:
 jobs:
 
     terraform:
-        name: 'Terraform'
+        name: 'Infrastructure'
         runs-on: ubuntu-latest
         environment:  ${{ inputs.ENVIRONMENT }}
         env:
@@ -52,13 +52,13 @@ jobs:
 
         - name: 'Show Variables'
           run: |
-            sh ./cde/variables.sh
+            sh ./tools/environment/variables.sh
   
         - name: 'Terraform Plan'
           run: |
-            sh ./cde/terraform.sh
+            sh ./tools/infrastructure/infrastructure.sh
         
         - name: Terraform Apply
           if: ${{ github.ref == 'refs/heads/main' || (inputs.ENVIRONMENT != 'production' && inputs.ENVIRONMENT != 'production-plan') }}
           run: |
-            sh ./cde/terraform.sh True
+            sh ./tools/infrastructure/infrastructure.sh True

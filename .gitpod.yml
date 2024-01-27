@@ -4,22 +4,26 @@ image:
 tasks:
   - name: Versions
     command: |
-      sh ./cde/versions.sh
+      sh ./tools/environment/versions.sh
+  - name: Versions
+    command: |
+      sh ./tools/environment/variables.sh
   - name: Azure CLI
     command: |
-      sh ./cde/azure_sp.sh
+      sh ./tools/environment/azure_sp.sh
       gp sync-done waitonazurecli
   - name: Azure Storage
     command: |
       gp sync-await waitonazurecli
-      sh ./cde/storage.sh
+      sh ./tools/infrastructure/statestorage.sh
       gp sync-done waitonnstate
   - name: Terraform
     command: |
       gp sync-await waitonnstate
-      sh ./cde/terraform.sh
+      sh ./tools/infrastructure/infrastructure.sh
 
 vscode:
   extensions:
     - hashicorp.terraform
     - ms-azuretools.vscode-azureresourcegroups
+    - formulahendry.code-runner
