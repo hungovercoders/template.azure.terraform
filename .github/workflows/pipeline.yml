@@ -14,7 +14,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  development-terraform:
+  development-infrastructure:
     uses: ./.github/workflows/infrastructure.yml
     with:
       UNIQUE_NAMESPACE: ${{ vars.UNIQUE_NAMESPACE }}
@@ -27,10 +27,10 @@ jobs:
       ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
       ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
 
-  production-plan-terraform:
+  production-plan-infrastructure:
     if: github.ref != 'refs/heads/main'
     uses: ./.github/workflows/infrastructure.yml
-    needs: development-terraform
+    needs: development-infrastructure
     with:
       UNIQUE_NAMESPACE: ${{ vars.UNIQUE_NAMESPACE }}
       ORGANISATION: ${{ vars.ORGANISATION }}
@@ -42,10 +42,10 @@ jobs:
       ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
       ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
 
-  production-terraform:
+  production-infrastructure:
     if: github.ref == 'refs/heads/main'
     uses: ./.github/workflows/infrastructure.yml
-    needs: development-terraform
+    needs: development-infrastructure
     with:
       UNIQUE_NAMESPACE: ${{ vars.UNIQUE_NAMESPACE }}
       ORGANISATION: ${{ vars.ORGANISATION }}
