@@ -4,23 +4,23 @@ image:
 tasks:
   - name: Versions
     command: |
-      sh ./tools/environment/versions.sh
+      sh ./tools_platform/environment_versions.sh
   - name: Variables
     command: |
-      sh ./tools/environment/variables.sh
+      sh ./tools_platform/environment_variables.sh
   - name: Azure CLI
     command: |
-      sh ./tools/environment/azure_sp.sh
+      sh ./tools_platform/azure_login_service_principle.sh
       gp sync-done waitonazurecli
   - name: Azure Storage
     command: |
       gp sync-await waitonazurecli
-      sh ./tools/infrastructure/statestorage.sh
+      sh ./tools_platform/infrastructure_state_storage.sh
       gp sync-done waitonnstate
   - name: Terraform
     command: |
       gp sync-await waitonnstate
-      sh ./tools/infrastructure/infrastructure.sh
+      sh ./tools_platform/infrastructure.sh
 
 vscode:
   extensions:
