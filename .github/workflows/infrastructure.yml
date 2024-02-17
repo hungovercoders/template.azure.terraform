@@ -52,13 +52,13 @@ jobs:
 
         - name: 'Show Variables'
           run: |
-            sh ./tools/environment/variables.sh
+            sh ./tools_platform/environment_variables.sh
   
         - name: 'Terraform Plan'
           run: |
-            sh ./tools/infrastructure/infrastructure.sh
+            sh ./tools_platform/infrastructure.sh
         
         - name: Terraform Apply
           if: ${{ github.ref == 'refs/heads/main' || (inputs.ENVIRONMENT != 'production' && inputs.ENVIRONMENT != 'production-plan') }}
           run: |
-            sh ./tools/infrastructure/infrastructure.sh True
+            sh ./tools_platform/infrastructure.sh True

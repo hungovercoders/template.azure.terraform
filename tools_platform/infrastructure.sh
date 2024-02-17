@@ -33,8 +33,8 @@ echo "State Storage Account Resource Group is $TF_BACKEND_RESOURCE_GROUP"
 echo "State Storage Account is $TF_BACKEND_STORAGE_ACCOUNT" 
 echo "State Storage Account Container is $TF_BACKEND_CONTAINER"
 
-echo "MESSAGE: Changing to terraform directory..."
-cd  terraform
+echo "MESSAGE: Changing to infrastructure directory..."
+cd  infrastructure
 
 echo "MESSAGE: Initalising terraform..."
 terraform init -backend-config="resource_group_name=$TF_BACKEND_RESOURCE_GROUP" -backend-config="storage_account_name=$TF_BACKEND_STORAGE_ACCOUNT" -backend-config="container_name=$TF_BACKEND_CONTAINER"

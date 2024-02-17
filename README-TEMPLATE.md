@@ -24,13 +24,13 @@ This project will do this thing that I am describing.
 2. Run the following bash commands to test your changes.
 
 ```bash
-sh ./cde/terraform.sh
+sh ./tools_platform/infrastructure.sh
 ```
 
 3. If you wish to try deploying to development from your gitpod directory exactly as the pipeline would, runL:
 
 ```bash
-sh ./cde/terraform.sh True
+sh ./tools_platform/infrastructure.sh True
 ```
 
 ## Deployment
@@ -38,3 +38,8 @@ sh ./cde/terraform.sh True
 1. You can either manually trigger the github action associated with this repo, which will deploy to development and generate a plan against production.
 1. A pull request to main will trigger the github action associated with this repo, which will deploy to development and generate a plan against production.
 1. A completed pull request to main will trigger the github action associated with this repo, which will deploy to development and deploy to production.
+
+## Tools
+
+In the [tools_platform](./tools_platform/azure.sh), you will find a number of scripts that will help you to manage the infrastructure and the application.
+* [tools_platform](./tools_platform/azure.sh)
