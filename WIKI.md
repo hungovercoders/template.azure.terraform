@@ -1,13 +1,13 @@
-# TEMPLATE.AZURE.PLATFORM
+# TEMPLATE.AZURE.PLATFORM - Test
 
 This is a template repo for you to use to create your own Azure platform resources using Terraform. It is designed to work with both gitpod and github codespaces as well as deploy with github actions.
 
-- [TEMPLATE.AZURE.PLATFORM](#templateazureplatform)
+- [TEMPLATE.AZURE.PLATFORM - Test](#templateazureplatform---test)
   - [What this template provides](#what-this-template-provides)
   - [Naming Conventions Used](#naming-conventions-used)
   - [Use as Template](#use-as-template)
   - [Create Azure Resources](#create-azure-resources)
-  - [Update Common Variables](#update-common-variables)
+  - [Update Common Variables and Remove Terraform State Files](#update-common-variables-and-remove-terraform-state-files)
   - [Develop with Gitpod](#develop-with-gitpod)
     - [Setup a Gitpod Prebuild](#setup-a-gitpod-prebuild)
   - [Develop with Github Codespaces](#develop-with-github-codespaces)
@@ -18,6 +18,7 @@ This is a template repo for you to use to create your own Azure platform resourc
     - [Setup Environments](#setup-environments)
     - [Amend Workflow File](#amend-workflow-file)
   - [Importing Existing Azure Resources into Terraform](#importing-existing-azure-resources-into-terraform)
+  - [Remove Images and Insert Template README File](#remove-images-and-insert-template-readme-file)
   - [FAQs](#faqs)
     - [How do I test from my dev environment before committing to the pipeline?](#how-do-i-test-from-my-dev-environment-before-committing-to-the-pipeline)
   - [What versions of tools do I have installed?](#what-versions-of-tools-do-i-have-installed)
