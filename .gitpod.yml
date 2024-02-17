@@ -26,4 +26,8 @@ vscode:
   extensions:
     - hashicorp.terraform
     - ms-azuretools.vscode-azureresourcegroups
+    - ms-vscode.vscode-node-azure-pack
     - formulahendry.code-runner
+    - github.vscode-github-actions
+    - gitpod.gitpod-desktop
+    - redhat.vscode-yaml
