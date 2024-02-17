@@ -1,8 +1,8 @@
-# Template.Azure.Terraform
+# Template.Azure.Terraform - test
 
 This is a template implementation of how you can deploy Azure infrastructure using Terraform. This repository is designed to be a starting point for your own infrastructure as code projects. You can either use this repo as a template if you want a clean cut-off or fork it to keep up to date with any changes at source.
 
-- [Template.Azure.Terraform](#templateazureterraform)
+- [Template.Azure.Terraform - test](#templateazureterraform---test)
   - [Prerequisites](#prerequisites)
   - [Getting Started](#getting-started)
   - [Local Infrastructure Development in Gitpod](#local-infrastructure-development-in-gitpod)
